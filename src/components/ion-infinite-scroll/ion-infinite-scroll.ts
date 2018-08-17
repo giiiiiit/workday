@@ -11,6 +11,18 @@ export class InfiniteScrollComponent {
       this.items.push( this.items.length );
     }
   }
+  doRefresh(refresher){
+
+    console.log("下拉刷新");
+    setTimeout(() => { 
+        console.log('加载完成后，关闭刷新');
+        this.items = []; 
+        for (let i = 0; i < 30; i++) {
+          this.items.push( this.items.length );
+        }
+        refresher.complete();
+    }, 1500);
+  }
   doInfinite(infiniteScroll) {
     console.log('Begin async operation');
 
