@@ -20,14 +20,25 @@ export class SampleSignaturepad {
   @ViewChild('contentEl') contentEl: ElementRef;
 
   imageData: String;
+  forNumber = [];
   isEmpty = true;
+  conditionLeft = false;
+  conditionright = false;
+  statusLeft = 0;
+  statusRight = 0;
   private _signpadOptions: object;
 
   @Input()
   set signpadOptions(signpadOptions: object){
     this._signpadOptions = signpadOptions
     for (let k in this._signpadOptions) {
+      if (k !== 'canvasWidth') {
+        this._signpadOptions['canvasWidth'] = this.contentEl.nativeElement.offsetWidth - 30;
+      }
       switch (k) {
+        case 'canvasWidth':
+          this._signpadOptions[k] = this.contentEl.nativeElement.offsetWidth - 30;
+          break;
         case 'minWidth':
           if (!this._signpadOptions[k]) this._signpadOptions[k] = 0.5;
           if (this._signpadOptions[k] < 0.5) this._signpadOptions[k] = 0.5;
@@ -58,15 +69,18 @@ export class SampleSignaturepad {
   //   'backgroundColor': '#dfdfdf' // 背景颜色
   // };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
-
-  ionViewDidLoad() {
-    this.signaturePad.set('canvasWidth', this.contentEl.nativeElement.offsetWidth);
-    this.signaturePad.clear();
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    for (let i = 0; i < 5; i++) {
+      this.forNumber.push(this.forNumber.length)
+    }
   }
 
   drawStart() {
     // console.log('begin drawing');
+  }
+
+  choosePen(index) {
+    this.statusLeft = index
   }
 
   drawComplete() {
