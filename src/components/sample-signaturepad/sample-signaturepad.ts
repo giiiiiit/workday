@@ -20,25 +20,44 @@ export class SampleSignaturepad {
   @ViewChild('contentEl') contentEl: ElementRef;
 
   imageData: String;
-  forNumber = [];
+  arrayNumbers = [];
+  arrayColors = [];
   isEmpty = true;
   conditionLeft = false;
-  conditionright = false;
+  conditionRight = false;
+  tabStatus: boolean;
   statusLeft = 0;
   statusRight = 0;
-  private _signpadOptions: object;
+  public _signpadOptions: object;
+  public tabOptionss: {
+    tabStatus: boolean,
+    arrayNumbers: Array,
+    arrayColors: Array
+  }
+  public signpadOptionsValues: {
+    tabOptions: tabOptionss,
+    tabStatus: boolean,
+    minWidth: number, // 笔锋 float
+    maxWidth: number, // 粗细 float
+    throttle: number, // default 16 每秒绘制的次数,越细腻 int
+    canvasHeight: number,
+    canvasWidth: number,
+    penColor: string, // 画笔颜色
+    backgroundColor: string // 背景颜色
+  }
 
   @Input()
-  set signpadOptions(signpadOptions: object){
-    this._signpadOptions = signpadOptions
+  set signpadOptions(signpadOptionsValue: signpadOptionsValues){
+    this._signpadOptions = signpadOptionsValue;
+    this._signpadOptions['canvasWidth'] = this.contentEl.nativeElement.offsetWidth - 30;
+    this.tabStatus = this._signpadOptions['tabStatus'];
+    if (this._signpadOptions.tabOptions['tabStatus']) {
+      this.tabStatus = this._signpadOptions.tabOptions['tabStatus'];
+      this.arrayNumbers = this._signpadOptions.tabOptions['arrayNumbers'];
+      this.arrayColors = this._signpadOptions.tabOptions['arrayColors'];
+    }
     for (let k in this._signpadOptions) {
-      if (k !== 'canvasWidth') {
-        this._signpadOptions['canvasWidth'] = this.contentEl.nativeElement.offsetWidth - 30;
-      }
       switch (k) {
-        case 'canvasWidth':
-          this._signpadOptions[k] = this.contentEl.nativeElement.offsetWidth - 30;
-          break;
         case 'minWidth':
           if (!this._signpadOptions[k]) this._signpadOptions[k] = 0.5;
           if (this._signpadOptions[k] < 0.5) this._signpadOptions[k] = 0.5;
@@ -60,27 +79,43 @@ export class SampleSignaturepad {
     return this._signpadOptions;
   };
   @Output() signImgUrl = new EventEmitter<String>();
-  // private signaturePadOptions: Object = {
-  //   'minWidth': 1.0, // 笔锋 float
-  //   'maxWidth': 5.0, // 粗细 float
-  //   'throttle': 20, // default 16 每秒绘制的次数,越细腻 int
-  //   'canvasHeight': 200,
-  //   'penColor': '#333', // 画笔颜色
-  //   'backgroundColor': '#dfdfdf' // 背景颜色
-  // };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    for (let i = 0; i < 5; i++) {
-      this.forNumber.push(this.forNumber.length)
-    }
   }
 
   drawStart() {
     // console.log('begin drawing');
   }
 
-  choosePen(index) {
-    this.statusLeft = index
+  choosetab(type) {
+    if (type === 1) {
+      this.conditionRight = false;
+      if (this.conditionLeft === false) {
+        this.conditionLeft = true;
+      } else {
+        this.conditionLeft = false;
+      }
+    } else {
+      this.conditionLeft = false;
+      if (this.conditionRight === false) {
+        this.conditionRight = true;
+      } else {
+        this.conditionRight = false;
+      }
+    }
+  }
+
+  choosePen(type, index, item) {
+    console.log(item);
+    if (type === 1) {
+      this._signpadOptions.backgroundColor = item;
+      this.statusLeft = index;
+      this.conditionLeft = false;
+    } else if (type === 2) {
+      this._signpadOptions.penColor = item;
+      this.statusRight = index;
+      this.conditionRight = false;
+    }
   }
 
   drawComplete() {

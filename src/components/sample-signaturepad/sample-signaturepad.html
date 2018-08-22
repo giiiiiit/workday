@@ -7,21 +7,16 @@
       <img src="../../assets/imgs/sign-cancel2.png" alt="">
       <p>撤销</p>
     </div>
-    <div class="sign-foot-box">
-        <!-- *ngIf="conditionLeft" -->
-      <div class="foot-box-op foot-box-op-left" >
-        <span *ngFor="let i of forNumber; let i = index" [ngClass]="{'active': statusLeft === index}" (click)="choosePen(i)"></span>
+    <div class="sign-foot-box" *ngIf="tabStatus" (click)="choosetab($event, 1);">
+      <div class="foot-box-op foot-box-op-left" *ngIf="conditionLeft">
+        <span *ngFor="let item of arrayNumbers; let i = index" [ngClass]="{'active': statusLeft == i}" (click)="choosePen(1,i,item)"></span>
       </div>
       <img src="../../assets/imgs/sign-pen2.png" alt="">
       <p>画笔大小</p>
     </div>
-    <div class="sign-foot-box">
+    <div class="sign-foot-box" *ngIf="tabStatus" (click)="choosetab($event, 2);">
       <div class="foot-box-op foot-box-op-right" *ngIf="conditionRight">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span *ngFor="let item of arrayColors; let i = index" [ngStyle]="{'background-color':item}" [ngClass]="{'active': statusRight == i}" (click)="choosePen(2,i,item)"></span>
       </div>
       <img src="../../assets/imgs/sign-color2.png" alt="">
       <p>画笔颜色</p>

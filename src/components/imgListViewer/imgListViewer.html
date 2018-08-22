@@ -1,0 +1,4 @@
+<!-- Generated template for the ComponentExampleComponent component -->
+<div class="imgList">
+<img tappable *ngFor="let img of imgList; let i = index" src="{{img.url}}" imageViewer (click)="showBigImg(i)">
+</div>

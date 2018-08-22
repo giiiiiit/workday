@@ -1,10 +1,10 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicPageModule, IonicErrorHandler } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+import { NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
 import { PageExamplePage } from './page-example';
-import { GeolocationServer } from '../../base/Geolocation';
-import { ComponentMapModule } from '../../components/component-map/component-map.module';
-import { InfiniteScrollModule } from '../../components/ion-infinite-scroll/ion-infinite-scroll.module';
+import { ComponentExampleModule } from '../../components/component-example/component-example.module';
+ComponentExampleModule
+
+
 
 @NgModule({
   declarations: [
@@ -12,13 +12,8 @@ import { InfiniteScrollModule } from '../../components/ion-infinite-scroll/ion-i
   ],
   imports: [
     IonicPageModule.forChild(PageExamplePage),
-    ComponentMapModule,
-    InfiniteScrollModule
+    ComponentExampleModule,
+  
   ],
-  providers: [
-    Geolocation,
-    GeolocationServer,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
 })
 export class PageExamplePageModule {}
