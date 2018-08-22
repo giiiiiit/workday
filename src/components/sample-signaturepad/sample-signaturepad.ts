@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-
+import { signpadOptionsValues } from './signpadOptionsValues.model';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 /*
@@ -29,49 +29,36 @@ export class SampleSignaturepad {
   statusLeft = 0;
   statusRight = 0;
   public _signpadOptions: object;
-  public tabOptionss: {
-    tabStatus: boolean,
-    arrayNumbers: Array,
-    arrayColors: Array
-  }
-  public signpadOptionsValues: {
-    tabOptions: tabOptionss,
-    tabStatus: boolean,
-    minWidth: number, // 笔锋 float
-    maxWidth: number, // 粗细 float
-    throttle: number, // default 16 每秒绘制的次数,越细腻 int
-    canvasHeight: number,
-    canvasWidth: number,
-    penColor: string, // 画笔颜色
-    backgroundColor: string // 背景颜色
-  }
 
   @Input()
   set signpadOptions(signpadOptionsValue: signpadOptionsValues){
     this._signpadOptions = signpadOptionsValue;
     this._signpadOptions['canvasWidth'] = this.contentEl.nativeElement.offsetWidth - 30;
     this.tabStatus = this._signpadOptions['tabStatus'];
-    if (this._signpadOptions.tabOptions['tabStatus']) {
-      this.tabStatus = this._signpadOptions.tabOptions['tabStatus'];
-      this.arrayNumbers = this._signpadOptions.tabOptions['arrayNumbers'];
-      this.arrayColors = this._signpadOptions.tabOptions['arrayColors'];
+    if (this._signpadOptions['tabOptions']['tabStatus']) {
+      this.tabStatus = this._signpadOptions['tabOptions']['tabStatus'];
+      this.arrayNumbers = this._signpadOptions['tabOptions']['arrayNumbers'];
+      this.arrayColors = this._signpadOptions['tabOptions']['arrayColors'];
+      this._signpadOptions['minWidth'] = this.arrayNumbers[0];
+      this._signpadOptions['penColor'] = this.arrayColors[0];
     }
     for (let k in this._signpadOptions) {
       switch (k) {
-        case 'minWidth':
-          if (!this._signpadOptions[k]) this._signpadOptions[k] = 0.5;
-          if (this._signpadOptions[k] < 0.5) this._signpadOptions[k] = 0.5;
-          if (this._signpadOptions[k] < 1.5) this._signpadOptions[k] = 1.5;
-          break;
-        case 'maxWidth':
-          if (!this._signpadOptions[k]) this._signpadOptions[k] = 2;
-          if (this._signpadOptions[k] < 2) this._signpadOptions[k] = 2;
-          if (this._signpadOptions[k] > 6) this._signpadOptions[k] = 6;
-          break;
+        // case 'minWidth':
+        //   if (!this._signpadOptions[k]) this._signpadOptions[k] = 0.5;
+        //   if (this._signpadOptions[k] < 0.5) this._signpadOptions[k] = 0.5;
+        //   if (this._signpadOptions[k] < 1.5) this._signpadOptions[k] = 1.5;
+        //   break;
+        // case 'maxWidth':
+        //   if (!this._signpadOptions[k]) this._signpadOptions[k] = 2;
+        //   if (this._signpadOptions[k] < 2) this._signpadOptions[k] = 2;
+        //   if (this._signpadOptions[k] > 6) this._signpadOptions[k] = 6;
+        //   break;
         case 'throttle':
           if (this._signpadOptions[k] > 20 || !this._signpadOptions[k]) this._signpadOptions[k] = 16;
           break;
       }
+      
     }
   }
 
@@ -106,13 +93,12 @@ export class SampleSignaturepad {
   }
 
   choosePen(type, index, item) {
-    console.log(item);
     if (type === 1) {
-      this._signpadOptions.backgroundColor = item;
+      this.signaturePad.set('minWidth', item);
       this.statusLeft = index;
       this.conditionLeft = false;
     } else if (type === 2) {
-      this._signpadOptions.penColor = item;
+      this.signaturePad.set('penColor', item);
       this.statusRight = index;
       this.conditionRight = false;
     }

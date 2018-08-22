@@ -18,11 +18,11 @@ export class TestPage {
       arrayNumbers: [8.0, 6.0, 4.0, 2.0, 1.0], //画笔粗细 number类型
       arrayColors: ['#333', '#fff111', '#3366cc', '#666', '#ff9900'] //画笔颜色 string
     },
-    minWidth: 1.0, // 笔锋 float
-    maxWidth: 5.0, // 粗细 float
+    minWidth: 2.0, // 粗细  float
+    maxWidth: 5.0, // 笔锋 float
     throttle: 20, // default 16 每秒绘制的次数,越细腻 int
     canvasHeight: 325,
-    penColor: '#eee', // 画笔颜色
+    penColor: '#ff9900', // 画笔颜色
     backgroundColor: '#fff' // 背景颜色
   }
 
