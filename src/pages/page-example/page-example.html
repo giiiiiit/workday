@@ -7,14 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>page-example</ion-title>
+    <ion-title>组件库</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <component-example></component-example>
-  我是张乐
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemSelected(item.url)">
+      {{ item.title }}
+    </button> 
+  </ion-list>
 </ion-content>
 

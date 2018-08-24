@@ -14,3 +14,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.header-ios, .footer-ios {
+    .toolbar-background-ios{
+        border-style: solid;
+        border-color: #c7000b;
+        background: #c7000b;
+    }
+    .toolbar-title-ios {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #fff;
+        pointer-events: auto;
+    }
+}

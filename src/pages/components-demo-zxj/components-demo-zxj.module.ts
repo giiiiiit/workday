@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { comonentsDemoZxjPage } from './components-demo-zxj';
 import { ComponentExampleModule } from '../../components/component-example/component-example.module';
-ComponentExampleModule
 
 //组件部分
 import { SlidesModule } from '../../components/slides/slides.module';

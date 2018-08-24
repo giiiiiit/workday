@@ -1,10 +1,10 @@
 <ion-content>
-<ion-refresher (ionRefresh)="doRefresh($event)">
+<ion-refresher pullMax="400" (ionRefresh)="doRefresh($event)">
   <ion-refresher-content
-    pullingIcon="arrow-dropdown"
-    pullingText="Pull to refresh"
-    refreshingSpinner="circles"
-    refreshingText="Refreshing...">
+    pullingIcon="ios-arrow-round-down"
+    pullingText="松开刷新"
+    refreshingText=""
+    refreshingSpinner="dots">
   </ion-refresher-content>
 </ion-refresher>
   <ion-list>
@@ -12,6 +12,9 @@
   </ion-list>
  
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="正在加载更多内容...">
+    </ion-infinite-scroll-content>
   </ion-infinite-scroll>
   </ion-content>
