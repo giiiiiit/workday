@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,7 +8,16 @@ import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 })
 
 export class TestPage {
+  componentType: string;
+  componentTitle: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.navParams.get('componentType'));
+    this.componentTitle = this.navParams.get('componentTitle');
+    if (!this.navParams.get('componentType')) {
+      this.componentType = 'SampleSignaturepad';
+    } else {
+      this.componentType = this.navParams.get('componentType');
+    }
   }
   markers = [[123.481002,41.69384],
     

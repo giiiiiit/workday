@@ -52,7 +52,7 @@ export class PageExamplePage {
     ]
   }
 
-  itemSelected(url) {
-    this.navCtrl.push(url);
+  itemSelected(title, url) {
+    this.navCtrl.push('TestPage', {componentTitle: title, componentType: url});
   }
 }

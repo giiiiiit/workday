@@ -16,7 +16,10 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
   imports: [
     BrowserModule,
     ionicGalleryModal.GalleryModalModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      mode: 'ios',
+      backButtonText: "返回"
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

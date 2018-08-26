@@ -12,7 +12,6 @@ export class InfiniteScrollComponent {
     }
   }
   doRefresh(refresher){
-
     console.log("下拉刷新");
     setTimeout(() => { 
         console.log('加载完成后，关闭刷新');

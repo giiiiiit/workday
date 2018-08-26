@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>线上签名</ion-title>
+    <ion-title>{{componentTitle}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <!-- <page-sample-signaturepad [signpadOptions]='signpadOptionsValue' (signImgUrl)="onsignImgUrl($event)"></page-sample-signaturepad> -->
-    <!-- <component-map [markers]="markers"></component-map> -->
-    <ioninfinite-scroll></ioninfinite-scroll>
+    <page-sample-signaturepad *ngIf="componentType === 'SampleSignaturepad'" [signpadOptions]='signpadOptionsValue' (signImgUrl)="onsignImgUrl($event)"></page-sample-signaturepad>
+    <component-map *ngIf="componentType === 'ComponentMapComponent'" [markers]="markers"></component-map>
+    <ioninfinite-scroll *ngIf="componentType === 'InfiniteScrollComponent'"></ioninfinite-scroll>
 </ion-content>
