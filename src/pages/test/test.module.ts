@@ -9,9 +9,8 @@ import { SlidesModule } from '../../components/slides/slides.module';
 import { imgListViewerModule } from '../../components/imgListViewer/imgListViewer.module';
 import { PDFReaderModule } from '../../components/pdf-reader/pdf-reader.module';
 import { videoPlayerModule } from '../../components/videoPlayer/videoPlayer.module';
-import { EchartPieModule } from '../../components/echart-pie/echart-pie.module';
-import { EchartBarModule } from '../../components/echart-bar/echart-bar.module';
-import { EchartLineModule } from '../../components/echart-line/echart-line.module';
+import { EchartModule } from '../../components/echart/echart.module';
+
 import { imgLazyLoadModule } from '../../components/img-lazyLoad/img-lazyLoad.module';
 import { treeDataModule } from '../../components/tree-data/tree-data.module';
 
@@ -28,9 +27,7 @@ import { treeDataModule } from '../../components/tree-data/tree-data.module';
     imgListViewerModule,
     PDFReaderModule,
     videoPlayerModule,
-    EchartPieModule,
-    EchartBarModule,
-    EchartLineModule,
+    EchartModule,
     imgLazyLoadModule,
     treeDataModule,
   ]

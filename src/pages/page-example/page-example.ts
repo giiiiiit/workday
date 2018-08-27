@@ -11,48 +11,85 @@ export class PageExamplePage {
     this.items = [
       {
         title: '组织架构',
-        url: ''
+        url: 'comonentsDemoZxjPage',
+        page:'comonentsDemoZxjPage'
       },
       {
-        title: '图片查看器',
-        url: ''
+        title: '图片查看',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
       },
       {
-        title: '视频查看器',
-        url: ''
+        title: '视频播放',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
       },
       {
-        title: '图标组件',
-        url: ''
+        title: '图片懒加载',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
+
       },
       {
-        title: '附件上传/下载',
-        url: ''
+        title: 'pdf文件查看',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
+
+      },
+      {
+        title: '附件上传',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
+
+      },
+      {
+        title: '下载',
+        url: 'comonentsDemoZxjPage',
+        content: "file-download",
+        page: 'comonentsDemoZxjPage'
+
+      },
+      {
+        title: '轮播图',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
+
+      },
+      {
+        title: 'echart图表',
+        url: 'comonentsDemoZxjPage',
+        page: 'comonentsDemoZxjPage'
+
       },
       {
         title: '数据校验',
-        url: ''
+        url: 'TestPage',
+        page: 'TestPage'
       },
       {
         title: '地理定位、地理轨迹',
-        url: 'ComponentMapComponent'
+        url: 'ComponentMapComponent',
+        page: 'TestPage'
       },
       {
         title: '联级列表组件',
-        url: ''
+        url: 'TestPage',
+        page: 'TestPage'
       },
       {
         title: '分页组件',
-        url: 'InfiniteScrollComponent'
+        url: 'InfiniteScrollComponent',
+        page: 'TestPage'
       },
       {
         title: '手写签字组件',
-        url: 'SampleSignaturepad'
+        url: 'SampleSignaturepad',
+        page: 'TestPage'
       }
     ]
   }
 
-  itemSelected(title, url) {
-    this.navCtrl.push('TestPage', {componentTitle: title, componentType: url});
+  itemSelected(title, url,page) {
+    this.navCtrl.push(page, {componentTitle: title, componentType: url});
   }
 }

@@ -10,13 +10,20 @@ import { Slides } from 'ionic-angular';
 export class SlidesComponent {
  
   @Input() slidesList:any;
+  @Input() pagers: Boolean;
 
   constructor() {
-  
+   
   }
-
+ 
+  ngOnInit(): void {
+   
+   
+    
+  }
   @ViewChild(Slides) slides: Slides;
   //解决切换其他页面回去轮播图不动问题
+ 
   ionViewWillEnter() {
     this.slides.startAutoplay();
   }
@@ -24,7 +31,6 @@ export class SlidesComponent {
     this.slides.stopAutoplay();
   }
   ionViewDidEnter() {
-    
     this.slides.startAutoplay();
   }
 }

@@ -13,6 +13,7 @@ export class PDFReaderComponent {
 
   pdfSrc2 = "";
   keyword = "";
+  loader = true;
   constructor(private transfer: FileTransfer,
     private file: File,) {
  
@@ -27,12 +28,21 @@ export class PDFReaderComponent {
     xhr.onload = (e: any) => {
       console.log(xhr);
       if (xhr.status === 200) {
+
+       
+        
         const blob = new Blob([xhr.response], { type: 'application/pdf' });
         this.pdfSrc2 = URL.createObjectURL(blob);
+      
+    
       }
     };
 
     xhr.send();
+  }
+  complete(event){
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%", event)
+    this.loader = false;
   }
  
 

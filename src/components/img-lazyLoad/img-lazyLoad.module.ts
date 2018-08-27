@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-import  {IonicModule  }  from  "ionic-angular";
-
-
+import { NgModule} from '@angular/core';
+import { IonicModule}  from  "ionic-angular";
 import { imgLazyLoadComponent } from './img-lazyLoad';
 
 @NgModule({
   declarations: [imgLazyLoadComponent],
   imports: [
-    IonicModule
+    IonicModule 
   ],
-  exports: [imgLazyLoadComponent]
+  exports: [imgLazyLoadComponent],
 })
 export class imgLazyLoadModule {}

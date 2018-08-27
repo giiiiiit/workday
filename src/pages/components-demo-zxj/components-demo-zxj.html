@@ -5,23 +5,26 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>demo-zxj</ion-title>
+    <ion-title>{{componentTitle}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+<!-- 图片懒加载 -->
+<div *ngIf="componentTitle =='图片懒加载'" class="center">
+  <div style="width:100%;height:200px">
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'" [default]="'assets/imgs/img-lazyLoad.jpg'"></img-lazyLoad>
+  </div>
+</div>
+
+
 <!-- 文件上传 -->
-<div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">文件上传</div>
-file：
-<upload-img-video-file [serverUrl]="''" [type]="'file'"  (successUpload)="successUpload($event)"
- (failedUpload)="failedUpload($event)"></upload-img-video-file>
+<div *ngIf="componentTitle =='附件上传'" class="center">
+  file：
+  <upload-img-video-file [serverUrl]="''" [type]="'file'" (successUpload)="successUpload($event)" (failedUpload)="failedUpload($event)"></upload-img-video-file>
 
-
-
-img-camera：
+ img-camera：
 <upload-img-video-file [serverUrl]="''" [type]="'img'" [source]="'camera'" [opacity]="'50'" (successUpload)="successUpload($event)"
   (failedUpload)="failedUpload($event)"></upload-img-video-file>
 
@@ -45,51 +48,84 @@ video-picker
 video-select
 <upload-img-video-file [serverUrl]="''" [type]="'video'" [source]="'selectSource'" [opacity]="'100'" (successUpload)="successUpload($event)"
   (failedUpload)="failedUpload($event)"></upload-img-video-file>
+</div>
+
+
+
 
 
 <!-- 组织机构树 -->
-<div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">组织机构树</div>
-<tree-data></tree-data>
+<div *ngIf="componentTitle =='组织架构'" class="center">
+  <tree-data></tree-data>
+</div>
 
 
-<!-- 图片懒加载 -->
-<div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">图片懒加载</div>
-<img-lazyLoad [width]="'100%'" [height]="'245px'" [src]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'" [default]="'assets/imgs/img-lazyLoad.jpg'"></img-lazyLoad>
+
+
 
 
  <!-- 轮播图 -->
-<div style="    width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">轮播图</div>
-<slides-component [slidesList]="imgList1"></slides-component>
+<div *ngIf="componentTitle =='轮播图'" class="center">
+  <div style="width:100%;height:240px">
+    <slides-component [slidesList]="imgList1" [pagers]="false"></slides-component>
+  </div>
+</div>
+
+
 
 
 <!-- 视频播放 -->
-<div style="    width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">视频播放</div>
-<videoPlayer-component [videoSrc]="'http://static.videogular.com/assets/videos/videogular.mp4'" 
-  [loop]="true"></videoPlayer-component>
+<div *ngIf="componentTitle =='视频播放'" class="center">
 
-<!-- 饼图 -->
-<div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">饼图</div>
-<echart-pie [option]="optionPie" ></echart-pie>
->
+  <div style="height:200px">
+    <videoPlayer-component [videoSrc]="'http://static.videogular.com/assets/videos/videogular.mp4'" [loop]="true" [watermark]="true"
+  [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></videoPlayer-component>
+  </div>
+</div>
 
 
-<!-- 柱状图 -->
-<div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">柱状图</div>
-<echart-bar [option]="optionBar"></echart-bar>
+<div *ngIf="componentTitle =='echart图表'" class="center">
+  <!-- 饼图 -->
+  <div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">饼图</div>
+  <div style="width:70%;height:500px">
+    <echart-tag [option]="optionPie" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
+  </div>
 
-<!-- 折线图 -->
-<div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">折线图</div>
-<echart-line [option]="optionLine" ></echart-line>
+
+
+  <!-- 柱状图 -->
+  <div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">柱状图</div>
+  <div style="width:100%;height:240px">
+    <echart-tag [option]="optionBar" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
+  </div>
+
+
+  <!-- 折线图 -->
+  <div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">折线图</div>
+  <div style="width:90%;height:400px">
+    <echart-tag [option]="optionLine" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
+  </div>
+</div>
+
+
 
 
 <!-- pdf文件查看 -->
-<div style="    width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">pdf文件查看</div>
-<pdf-reader [pdfSrc]="pdfSrc"></pdf-reader>
+<div *ngIf="componentTitle =='pdf文件查看'" style="margin: 100px 10px 0 10px;">
+  <pdf-reader [pdfSrc]="pdfSrc" ></pdf-reader>
+</div>
 
 
-<!-- 列表图片查看 -->
-<div style="    width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">列表图片查看</div>
-<img-list-viewer-component [imgList]="imgList2"></img-list-viewer-component>
+
+<!-- 图片查看 -->
+<div *ngIf="componentTitle =='图片查看'" class="center">
+  <div style="width:100%;height:100px">
+    <img-list-viewer-component [imgList]="imgList2"></img-list-viewer-component>
+  </div>
+</div>
+
+
+
 </ion-content>
 
 

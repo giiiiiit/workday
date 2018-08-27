@@ -1,8 +1,13 @@
 <!-- Generated template for the ComponentExampleComponent component -->
-<div>
-  <ion-slides pager="true" loop="true" autoplay="3000" autoplayDisableOnInteration="false" >
-    <ion-slide *ngFor="let slide of slidesList">
-      <img src="{{slide}}" alt="">
-    </ion-slide>
-  </ion-slides>
-</div>
+<ion-slides pager="true" loop="true" autoplay="3000" autoplayDisableOnInteration="false" *ngIf="pagers == true">
+  <ion-slide *ngFor="let slide of slidesList">
+    <img src="{{slide}}" alt="">
+  </ion-slide>
+</ion-slides>
+
+<ion-slides pager="false" loop="true" autoplay="3000" autoplayDisableOnInteration="false" *ngIf="pagers == false">
+  <ion-slide *ngFor="let slide of slidesList">
+    <img src="{{slide}}" alt="">
+  </ion-slide>
+</ion-slides>
+

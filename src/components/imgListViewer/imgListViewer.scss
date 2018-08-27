@@ -1,5 +1,6 @@
 img-list-viewer-component {
   .imgList{
+    height: 100%;
      width:100%;
      display: inline;
      white-space: nowrap;
@@ -18,7 +19,7 @@ img-list-viewer-component {
     max-width:30%!important;
     margin:10px 1.5%;
     width:30% !important;
-    height: 120px;
+    height: 100%;
     display:inline-block
   }
 }

@@ -17,10 +17,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'components-demo-zxj.html',
 })
 export class comonentsDemoZxjPage {
+  componentType: string;
+  componentTitle: string;
   imgList1 = ["assets/imgs/slide1.jpg", "assets/imgs/slide2.jpg", "assets/imgs/slide3.jpg"];
-  imgList2 = [{ url: "assets/imgs/slide1.jpg" }, { url: "assets/imgs/slide1.jpg" },{ url: "assets/imgs/slide2.jpg" }, { url: "assets/imgs/slide3.jpg" }];
+  imgList2 = [
+    { url: "assets/imgs/slide1.jpg", urlBig: "assets/imgs/slide1.jpg" }, { url: "assets/imgs/slide1.jpg", urlBig: "assets/imgs/slide1.jpg" }, { url: "assets/imgs/slide2.jpg", urlBig: "assets/imgs/slide2.jpg" }, { url: "assets/imgs/slide3.jpg", urlBig: "assets/imgs/slide3.jpg" }];
   pdfSrc = "http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.componentTitle = this.navParams.get('componentTitle');
+    if (!this.navParams.get('componentType')) {
+      this.componentType = this.navParams.get('componentType');
+    } 
   }
 
   optionPie = {
@@ -41,6 +49,7 @@ export class comonentsDemoZxjPage {
     series: [
       {
         name: '访问来源',
+        type: 'pie',
         radius: '55%',
         center: ['50%', '60%'],
         data: [
@@ -70,6 +79,7 @@ export class comonentsDemoZxjPage {
     },
     series: [{
       data: [120, 200, 150, 80, 70, 110, 130],
+      type: 'bar'
     }]
   };
   optionLine = {
@@ -82,9 +92,12 @@ export class comonentsDemoZxjPage {
     },
     series: [{
       data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'line',
       smooth: true
     }]
   }
+
+
 
   successUpload(event){
     alert("成功");
