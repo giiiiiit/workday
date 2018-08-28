@@ -1,0 +1,51 @@
+select-component {
+    // .select-box{
+    //     background-color: #fff;
+    //     height: 100%;
+    // }
+    .select1{
+        .mask{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba($color: #000000, $alpha: 0.55)
+        }
+        .select1-box{
+            width: 75%;
+            background-color: #fff;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            margin-left: -37.5%;
+            ul{
+                margin: 0;
+                padding: 15px;
+                li{
+                    list-style: none;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 9px 3px;
+                    border-bottom: 1px solid #e6e6e6;
+                    border-top: 1px solid transparent;
+                    &:last-child{
+                        border-bottom:1px solid transparent;
+                    }
+                    ion-icon{
+                        font-weight: 700;
+                        font-size: 18px;
+                        $color: topic;
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+    .select2{
+        display: none;
+    }
+}

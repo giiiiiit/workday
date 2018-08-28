@@ -8,4 +8,5 @@
     <page-sample-signaturepad *ngIf="componentType === 'SampleSignaturepad'" [signpadOptions]='signpadOptionsValue' (signImgUrl)="onsignImgUrl($event)"></page-sample-signaturepad>
     <component-map *ngIf="componentType === 'ComponentMapComponent'" [markers]="markers"></component-map>
     <ioninfinite-scroll *ngIf="componentType === 'InfiniteScrollComponent'"></ioninfinite-scroll>
+    <select-component *ngIf="componentType === 'SelectComponent'"></select-component> 
 </ion-content>

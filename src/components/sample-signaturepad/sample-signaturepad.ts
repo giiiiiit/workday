@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { signpadOptionsValues } from './signpadOptionsValues.model';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 

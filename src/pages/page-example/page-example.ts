@@ -73,7 +73,7 @@ export class PageExamplePage {
       },
       {
         title: '联级列表组件',
-        url: 'TestPage',
+        url: 'SelectComponent',
         page: 'TestPage'
       },
       {

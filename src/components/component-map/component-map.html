@@ -1,5 +1,5 @@
-<!-- <baidu-map [options]="options" style="display: block; width: 100%; height: 650px;">
-    <polyline [points]="points" [options]="polylineOptions" (loaded)="polylineLoaded($event)"></polyline>
-</baidu-map> -->
-<div id="container"></div>  
-<!-- <button></button> -->
+<div id="container">
+    <div class="toggleLine">
+        <button [ngClass]="{'active': !LineOpa}" (click)="showLine()">{{buttonName}}</button>
+    </div>
+</div>  
