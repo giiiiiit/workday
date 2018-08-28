@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 /**
  * Generated class for the SelectComponent component.
@@ -11,12 +11,29 @@ import { Component } from '@angular/core';
   templateUrl: 'select.html'
 })
 export class SelectComponent {
-
-  text: string;
-
+  @Input() data: Array<Object>;
+  @Input() title: string;
+  @Output() onChange = new EventEmitter<Object>();
+  status: number | string;
+  select1Show: boolean;
   constructor() {
     console.log('Hello SelectComponent Component');
-    this.text = 'Hello World';
   }
 
+  public openModal(type) {
+    if (type === 1) {
+      this.select1Show = true;
+    }
+  }
+
+  public close() {
+    this.select1Show = false;
+  }
+
+  private choseItem(id, title) {
+    if (this.status === id) return; 
+    this.status = id;
+    this.onChange.emit({id: id, title: title})
+    this.close();
+  }
 }

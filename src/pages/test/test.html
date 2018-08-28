@@ -5,8 +5,17 @@
 </ion-header>
 
 <ion-content>
+
     <page-sample-signaturepad *ngIf="componentType === 'SampleSignaturepad'" [signpadOptions]='signpadOptionsValue' (signImgUrl)="onsignImgUrl($event)"></page-sample-signaturepad>
+    
     <component-map *ngIf="componentType === 'ComponentMapComponent'" [markers]="markers"></component-map>
+
     <ioninfinite-scroll *ngIf="componentType === 'InfiniteScrollComponent'"></ioninfinite-scroll>
-    <select-component *ngIf="componentType === 'SelectComponent'"></select-component> 
+
+    <select-component #selectComponent *ngIf="componentType === 'SelectComponent'" [data]="selectData" [title]="selectTitle" (onChange)="selectChange($event)"></select-component>
+    <div *ngIf="componentType === 'SelectComponent'" style="text-align: center">
+      <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(1)">样式一</button>
+      <p>{{itemdatas}}</p>
+    </div>
+
 </ion-content>

@@ -14,7 +14,6 @@ import { EchartModule } from '../../components/echart/echart.module';
 
 import { imgLazyLoadModule } from '../../components/img-lazyLoad/img-lazyLoad.module';
 import { treeDataModule } from '../../components/tree-data/tree-data.module';
-
 @NgModule({
   declarations: [
     TestPage,

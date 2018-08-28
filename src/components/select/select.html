@@ -1,31 +1,12 @@
 <!-- Generated template for the SelectComponent component -->
 <div class="select-box">
-  <div class="select1">
-    <div class="mask"></div>
-    <div class="select1-box">
+  <div class="select1" #select1>
+    <div class="mask" (click)="close()"  [hidden]="!select1Show"></div>
+    <div class="select1-box" [ngClass]="{'slide-fade-enter-active': select1Show, 'lide-fade-leave-to': !select1Show}">
+        <h5>{{title}}</h5>
         <ul>
-          <li>
-            <span>不限</span>
-            <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-          </li>
-          <li>
-            <span>不限</span>
-            <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-          </li>
-          <li>
-            <span>不限</span>
-            <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-          </li>
-          <li>
-            <span>不限</span>
-            <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-          </li>
-          <li>
-            <span>不限</span>
-            <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-          </li>
-          <li>
-            <span>不限</span>
+          <li *ngFor="let item of data" [ngClass]="{'active': item.id === status}" (click)="choseItem(item.id, item.title)">
+            <span>{{item.title}}</span>
             <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
           </li>
         </ul>

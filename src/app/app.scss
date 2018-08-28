@@ -32,6 +32,13 @@
     color: #000;
     background-color: #faf9f2;
 }
-$color: (
-    topic: #ff4d56
-)
+$colorTopic: #ff4d56;
+@mixin ellipsis($num){
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $num;
+}
