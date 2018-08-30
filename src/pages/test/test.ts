@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, IonicModule } from 'ionic-angular';
-// import { SelectModule } from '../../components/select/select.module';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Feedback } from '../../base/Feedback';
 @IonicPage()
 @Component({
   selector: 'page-test',
@@ -9,9 +9,10 @@ import { IonicPage, NavController, NavParams, IonicModule } from 'ionic-angular'
 
 export class TestPage {
   @ViewChild('selectComponent') selectComponent:any;
+  @ViewChild('sidemenuselect') sidemenuSelect:any;
   componentType: string;
   componentTitle: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private feedback: Feedback) {
     console.log(this.navParams.get('componentType'));
     this.componentTitle = this.navParams.get('componentTitle');
     if (!this.navParams.get('componentType')) {
@@ -59,9 +60,16 @@ export class TestPage {
   itemdatas: string;
   selectChange(itemdata: Object) {
     this.itemdatas = JSON.stringify(itemdata);
+    this.feedback.Toast({
+      msg: this.itemdatas
+    });
   }
   openmodal(type) {
+    if (type === 'side') {
+      this.sidemenuSelect.open();
+    } else {
       this.selectComponent.openModal(type);
+    }
   }
   // 地图标记点经纬度
   markers = [[123.481002,41.69384],[123.476281,41.697877],[123.466797,41.69682]];

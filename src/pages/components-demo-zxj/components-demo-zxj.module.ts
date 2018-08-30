@@ -12,7 +12,10 @@ import { EchartModule } from '../../components/echart/echart.module';
 import { imgLazyLoadModule } from '../../components/img-lazyLoad/img-lazyLoad.module';
 import { treeDataModule } from '../../components/tree-data/tree-data.module';
 import { uploadIimgVideoFileModule } from '../../components/upload-img-video-file/upload-img-video-file.module';
-
+import { InViewportModule,WindowRef } from '@thisissoon/angular-inviewport';
+const providers = [
+  { provide: WindowRef, useValue: window }
+];
 @NgModule({
   declarations: [
     comonentsDemoZxjPage,
@@ -27,7 +30,8 @@ import { uploadIimgVideoFileModule } from '../../components/upload-img-video-fil
     EchartModule,
     imgLazyLoadModule,
     treeDataModule,
-    uploadIimgVideoFileModule
+    uploadIimgVideoFileModule,
+    InViewportModule.forRoot(providers)
   ],
 })
 export class comonentsDemoZxjModule {}

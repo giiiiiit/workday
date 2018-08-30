@@ -32,7 +32,13 @@
     color: #000;
     background-color: #faf9f2;
 }
+ion-content {
+  background-color: #ffffff !important;
+}
+$colorDeep: #C7000B;
 $colorTopic: #ff4d56;
+$colorTitle: #40a6ff;
+$colorLine: #e6e6e6;
 @mixin ellipsis($num){
     overflow: hidden;
     word-wrap: break-word;
@@ -42,3 +48,13 @@ $colorTopic: #ff4d56;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: $num;
 }
+ 
+// .tip{ 
+//     .toast-message{
+//         color: var(--ion-text-color-step-150,#262626);
+//     }
+//     .toast-wrapper {
+//         background: var(--ion-background-color-step-50,#7d7d7d);
+//     }
+// }
+

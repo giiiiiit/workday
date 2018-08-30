@@ -1,67 +1,30 @@
-import { Component} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular';
 @Component({
   selector: 'tree-data',
-  // templateUrl: "tree-data.html"
-  template: `
-    <tree-root [focused]="true" [nodes]="nodes"></tree-root>
-    <br>
-    <p>Keys:</p>
-    down | up | left | right | space | enter
-  `,
+  templateUrl: "tree-data.html"
+ 
 })
 export class TreeDataComponent {
-  nodes = [
-    {
-      name: 'root1',
-      children: [
-        { name: 'child1' },
-        { name: 'child2' }
-      ]
-    },
-    {
-      name: 'root2',
-      children: [
-        { name: 'child2.1', children: [] },
-        {
-          name: 'child2.2', children: [
-            { name: 'grandchild2.2.1' }
-          ]
-        }
-      ]
-    },
-    { name: 'root3' },
-    { name: 'root4', children: [] },
-    { name: 'root5', children: null }
-  ];
-  options;
-  constructor() {
-    this.nodes = [
-      {
-        name: 'root1',
-        children: [
-          { name: 'child1' },
-          { name: 'child2' }
-        ]
-      },
-      {
-        name: 'root2',
-        children: [
-          { name: 'child2.1', children: [] },
-          {
-            name: 'child2.2', children: [
-              { name: 'grandchild2.2.1' }
-            ]
-          }
-        ]
-      },
-      { name: 'root3' },
-      { name: 'root4', children: [] },
-      { name: 'root5', children: null }
-    ];
+
+
+  @Input() targetPage: string;
+  @Input() paramaName: string;
+  @Input() btnText: string;
+  @Input() nodes : any;
+  constructor(public navCtrl: NavController) {
+   
 
   }
-
-
+  switchChildren(item){
+    item.showChild = !item.showChild;
+  }
+  
+  viewOrg(item) {
+    let parama = {};
+    parama[this.paramaName] = item;
+    this.navCtrl.push(this.targetPage, parama);
+  }
   ngOnInit() {
    
 

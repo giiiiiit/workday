@@ -9,9 +9,22 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemSelected(item.title, item.url,item.page)">
-      {{ item.title }}
-    </button> 
+    <div *ngFor="let item of items;" (click)="itemSelected(item.title, item.url,item.page)" 
+    class="tab-item">
+       {{ item.title }}
+        <img src="assets/imgs/rightArrow@3x.png" alt="">
+    </div >
+    <div  (click)="itemSelected2('textPanelListPage')" 
+    class="tab-item">
+       文字列表
+        <img src="assets/imgs/rightArrow@3x.png" alt="">
+    </div >
+    <div  (click)="itemSelected2('imgPanelListPage')" 
+    class="tab-item">
+       图片列表
+        <img src="assets/imgs/rightArrow@3x.png" alt="">
+    </div >
+    
   </ion-list>
 </ion-content>
 

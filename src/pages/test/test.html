@@ -11,11 +11,21 @@
     <component-map *ngIf="componentType === 'ComponentMapComponent'" [markers]="markers"></component-map>
 
     <ioninfinite-scroll *ngIf="componentType === 'InfiniteScrollComponent'"></ioninfinite-scroll>
+    
+    
+    
+    <div  *ngIf="componentType === 'SideMenuSelectComponent'" style="text-align: center;margin-top: 50px;">
+        <button ion-button shape="round" style="width: 65%;" color="secondary" fill="outline" (click)="openmodal('side')">预览</button>
+    </div>
 
-    <select-component #selectComponent *ngIf="componentType === 'SelectComponent'" [data]="selectData" [title]="selectTitle" (onChange)="selectChange($event)"></select-component>
     <div *ngIf="componentType === 'SelectComponent'" style="text-align: center">
-      <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(1)">样式一</button>
-      <p>{{itemdatas}}</p>
+      <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(1)">样式1</button>
+      <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(2)">样式2</button>
+      <div style="position: relative;">
+        <select-component #selectComponent *ngIf="componentType === 'SelectComponent'" [data]="selectData" [title]="selectTitle" (onChange)="selectChange($event)"></select-component>
+      </div>
+      <!-- <p>{{itemdatas}}</p> -->
     </div>
 
 </ion-content>
+<side-menu-select *ngIf="componentType === 'SideMenuSelectComponent'" #sidemenuselect></side-menu-select>

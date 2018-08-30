@@ -1,8 +1,8 @@
 <!-- Generated template for the SelectComponent component -->
 <div class="select-box">
   <div class="select1" #select1>
-    <div class="mask" (click)="close()"  [hidden]="!select1Show"></div>
-    <div class="select1-box" [ngClass]="{'slide-fade-enter-active': select1Show, 'lide-fade-leave-to': !select1Show}">
+    <div class="mask" (click)="close()" [hidden]="!select1Show"></div>
+    <div class="select1-box" [hidden]="!select1Show">
         <h5>{{title}}</h5>
         <ul>
           <li *ngFor="let item of data" [ngClass]="{'active': item.id === status}" (click)="choseItem(item.id, item.title)">
@@ -12,14 +12,14 @@
         </ul>
     </div>
   </div>
-  <!-- <div class="select2">
-    <ion-menu side="start">
-      <ion-header translucent>
-        <ion-toolbar color="secondary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    </ion-menu>
-  </div> -->
+  <div class="select2">
+    <div class="select2-box">
+      <ul>
+        <li *ngFor="let item of data" [ngClass]="{'active': item.id === status}" (click)="choseItem(item.id, item.title)">
+          <span>{{item.title}}</span>
+        </li>
+      </ul>
+  </div>
+  </div>
 </div>
 

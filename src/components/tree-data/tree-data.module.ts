@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from "ionic-angular";
 import { TreeModule } from 'angular-tree-component';
 import { TreeDataComponent } from './tree-data';
+import { treeTempalteModule} from './tree-tempalte/tree-template.module'
 
 
 @NgModule({
@@ -12,7 +13,9 @@ import { TreeDataComponent } from './tree-data';
     FormsModule,
     CommonModule,
     IonicModule,
+    treeTempalteModule,
     TreeModule.forRoot()],
+    
   exports: [
     TreeDataComponent
   ]

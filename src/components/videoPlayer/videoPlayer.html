@@ -2,6 +2,6 @@
 <div class="videoContainer">
 <p class="waterMark" *ngIf="watermark==true && watermarkType =='text'">{{watermarkTextOrUrl}}</p>
 <img class="waterMark" src="{{watermarkTextOrUrl}}" alt="" *ngIf="watermark==true && watermarkType =='img'" style="width: 10%;">
-  <video src="{{videoSrc}}" controls="controls" loop="loop">
+<video src="{{videoSrc}}" controls="controls" loop="loop" preload="auto" playsinline webkit-playsinline poster="assets/imgs/videoPoster.jpg">
   </video> 
 </div>

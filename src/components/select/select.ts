@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
 /**
  * Generated class for the SelectComponent component.
  *
@@ -16,6 +15,7 @@ export class SelectComponent {
   @Output() onChange = new EventEmitter<Object>();
   status: number | string;
   select1Show: boolean;
+  select2Show: boolean;
   constructor() {
     console.log('Hello SelectComponent Component');
   }
@@ -23,10 +23,12 @@ export class SelectComponent {
   public openModal(type) {
     if (type === 1) {
       this.select1Show = true;
+    } else if (type === 2) {
+      this.select1Show = true;
     }
   }
 
-  public close() {
+  protected close() {
     this.select1Show = false;
   }
 

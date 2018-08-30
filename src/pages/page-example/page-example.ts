@@ -77,6 +77,11 @@ export class PageExamplePage {
         page: 'TestPage'
       },
       {
+        title: '联级列表组件一',
+        url: 'SideMenuSelectComponent',
+        page: 'TestPage'
+      },
+      {
         title: '分页组件',
         url: 'InfiniteScrollComponent',
         page: 'TestPage'
@@ -91,5 +96,8 @@ export class PageExamplePage {
 
   itemSelected(title, url,page) {
     this.navCtrl.push(page, {componentTitle: title, componentType: url});
+  }
+  itemSelected2(url){
+    this.navCtrl.push(url);
   }
 }

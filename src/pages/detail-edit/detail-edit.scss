@@ -1,0 +1,82 @@
+page-detail-edit {
+    ion-header{
+        span{
+            float: right;
+            margin-right: 15px;
+            color: #fff;
+            line-height: 16px;
+        }
+    }
+    .edit{
+        margin-top: 8px;
+        height: 100%;
+        background-color: #fff;
+        .edit-box{
+            padding: 15px;
+            border-bottom: 1px solid $colorLine;
+            p{
+                font-weight: 600;
+                position: relative;
+                padding-left: 15px;
+                line-height: 20px;
+                font-size: 15px;
+                margin: 0;
+                &:before{
+                    content: '';
+                    height: 16px;
+                    width: 4px;
+                    position: absolute;
+                    top: 2px;
+                    left: 0;
+                    background-color: $colorTopic;
+                }
+            }
+            &:last-child{
+                border: 0;
+            }
+        }
+        .img-box{
+            .imgs{
+                margin-top: 18px;
+                display: flex;
+                justify-content: space-between;
+                img{
+                    width: 110px;
+                    height: 110px;
+                    object-fit: cover;
+                }
+                div{
+                    width: 110px;
+                    height: 110px;
+                    background-color: #f2f2f2;
+                    text-align: center;
+                    line-height: 130px;
+                    ion-icon{
+                        font-size: 40px;
+                        color: #a4a4a4;
+                    }
+                }
+            }
+        }
+        .title-box{
+            input{
+                border: 0;
+                margin-top: 10px;
+                font-size: 16px;
+                padding: 0 15px;
+                width: 100%;
+            }
+        }
+        .content-box{
+            .word-input{
+                height: 250px;
+                background-color: #f6f6f6;
+                margin-top: 10px;
+                padding: 12px;
+                span{
+                    color: #a7a7a7;
+                }
+            }
+        }
+    }
+}

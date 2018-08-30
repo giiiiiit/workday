@@ -9,6 +9,9 @@ import { MyApp } from './app.component';
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
+import { Feedback } from '../base/Feedback';
+
+
 @NgModule({
   declarations: [
     MyApp
@@ -20,12 +23,14 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
       mode: 'ios',
       backButtonText: "返回"
     }),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
   ],
   providers: [
+    Feedback,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

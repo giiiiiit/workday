@@ -13,10 +13,59 @@
 <ion-content >
 <!-- 图片懒加载 -->
 <div *ngIf="componentTitle =='图片懒加载'" class="center">
-  <div style="width:100%;height:200px">
-    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'" [default]="'assets/imgs/img-lazyLoad.jpg'"></img-lazyLoad>
+    <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+        Amet tempor excepteur occaecat nulla.
+      </p>
+      <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+          Amet tempor excepteur occaecat nulla.
+        </p>
+        <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+            Amet tempor excepteur occaecat nulla.
+          </p>
+          <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+              Amet tempor excepteur occaecat nulla.
+            </p>
+            <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+                Amet tempor excepteur occaecat nulla.
+              </p>
+              <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+                  Amet tempor excepteur occaecat nulla.
+                </p>
+                <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+                    Amet tempor excepteur occaecat nulla.
+                  </p>
+                  <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+                      Amet tempor excepteur occaecat nulla.
+                    </p>
+                    <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
+                        Amet tempor excepteur occaecat nulla.
+                      </p>
+
+  <!-- <div style="width:100%;height:200px;border:1px solid" snInViewport (inViewportChange)="onInViewportChange($event)">
+    
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'"></img-lazyLoad>
   </div>
+  <div style="width:100%;height:200px;border:1px solid" snInViewport (inViewportChange)="onInViewportChange($event)">
+
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'"></img-lazyLoad>
+  </div>
+  <div style="width:100%;height:200px;border:1px solid" snInViewport (inViewportChange)="onInViewportChange($event)">
+
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'"></img-lazyLoad>
+  </div>
+  <div style="width:100%;height:200px;border:1px solid" snInViewport (inViewportChange)="onInViewportChange($event)">
+
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'"></img-lazyLoad>
+  </div>
+  <div style="width:100%;height:200px;border:1px solid" snInViewport (inViewportChange)="onInViewportChange($event)">
+
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'"></img-lazyLoad>
+  </div>
+  <div style="width:100%;height:200px;border:1px solid" snInViewport (inViewportChange)="onInViewportChange($event)">
+    <img-lazyLoad [src]="'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg'"></img-lazyLoad>
+  </div> -->
 </div>
+
 
 
 <!-- 文件上传 -->
@@ -55,8 +104,8 @@ video-select
 
 
 <!-- 组织机构树 -->
-<div *ngIf="componentTitle =='组织架构'" class="center">
-  <tree-data></tree-data>
+<div *ngIf="componentTitle =='组织架构'"  >
+<tree-data [nodes]="nodes" [targetPage]="'PageExamplePage'" [paramaName]="'qweasd'" [btnText]="'点我切换'"></tree-data>
 </div>
 
 
@@ -84,25 +133,24 @@ video-select
 </div>
 
 
-<div *ngIf="componentTitle =='echart图表'" class="center">
+<div *ngIf="componentTitle =='echart图表'" style="margin-top: 68px;">
   <!-- 饼图 -->
-  <div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">饼图</div>
-  <div style="width:70%;height:500px">
+  <div >
     <echart-tag [option]="optionPie" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
   </div>
 
 
 
   <!-- 柱状图 -->
-  <div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">柱状图</div>
-  <div style="width:100%;height:240px">
+
+  <div >
     <echart-tag [option]="optionBar" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
   </div>
 
 
   <!-- 折线图 -->
-  <div style="width: 100%;height: 30px;line-height: 30px;text-align: center;margin: 10px 0;background-color: #55b0af;">折线图</div>
-  <div style="width:90%;height:400px">
+
+  <div >
     <echart-tag [option]="optionLine" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
   </div>
 </div>

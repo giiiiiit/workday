@@ -6,6 +6,8 @@ import { SampleSignaturepadModule } from '../../components/sample-signaturepad/s
 import { ComponentMapModule } from '../../components/component-map/component-map.module';
 import { InfiniteScrollModule } from '../../components/ion-infinite-scroll/ion-infinite-scroll.module';
 import { SelectModule } from '../../components/select/select.module';
+import { SideMenuSelectModule } from '../../components/side-menu-select/side-menu-select.module';
+
 import { SlidesModule } from '../../components/slides/slides.module';
 import { imgListViewerModule } from '../../components/imgListViewer/imgListViewer.module';
 import { PDFReaderModule } from '../../components/pdf-reader/pdf-reader.module';
@@ -24,6 +26,8 @@ import { treeDataModule } from '../../components/tree-data/tree-data.module';
     ComponentMapModule,
     InfiniteScrollModule,
     SelectModule,
+    SideMenuSelectModule,
+    
     SlidesModule,
     imgListViewerModule,
     PDFReaderModule,

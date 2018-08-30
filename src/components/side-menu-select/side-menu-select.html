@@ -1,0 +1,6 @@
+<div class="side-menu" [ngClass]="{'side-menu-active': showMenu, 'side-menu-out': !showMenu}">
+  <div class="mash" (click)="close()" [hidden]="showMask"></div>
+  <div class="side-menu-box" [hidden]="showMask" [ngStyle]="{'width':widths}">
+    123213
+  </div>
+</div>

@@ -17,6 +17,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'components-demo-zxj.html',
 })
 export class comonentsDemoZxjPage {
+
+  // highlight = false;
+
+  onInViewportChange(inViewport: boolean) {
+    console.log(inViewport);
+    alert(inViewport);
+    // this.highlight = inViewport;
+
+  }
+
   componentType: string;
   componentTitle: string;
   imgList1 = ["assets/imgs/slide1.jpg", "assets/imgs/slide2.jpg", "assets/imgs/slide3.jpg"];
@@ -96,6 +106,98 @@ export class comonentsDemoZxjPage {
       smooth: true
     }]
   }
+  nodes = [
+    {
+      name: 'root1',
+      peopleNum: 10,
+      childrenCopy: [],
+      showChild: false,
+
+    },
+    {
+      name: 'root2',
+      peopleNum: 10,
+      childrenCopy: [],
+      showChild: false,
+      children: [
+        {
+          name: 'childA',
+          peopleNum: 10,
+          showChild: false,
+          children: [
+            {
+              name: 'childAA',
+              peopleNum: 10,
+              showChild: false,
+              children: [
+                {
+                  name: 'childAAA',
+                  peopleNum: 10
+                },
+                {
+                  name: 'childAAB',
+                  peopleNum: 10
+                }
+              ]
+            },
+            {
+              name: 'childAB',
+              peopleNum: 10,
+              showChild: false,
+              children: [
+                {
+                  name: 'childABA',
+                  peopleNum: 10,
+                },
+                {
+                  name: 'childABB',
+                  peopleNum: 10,
+                }
+
+              ]
+            }
+          ]
+        },
+        {
+          name: 'childB',
+          peopleNum: 10,
+          showChild: false,
+          children: [
+            {
+              name: 'childBA',
+              peopleNum: 10,
+              showChild: false,
+              children: [
+                {
+                  name: 'childBAA',
+                  peopleNum: 10,
+                },
+                {
+                  name: 'childBAB',
+                  peopleNum: 10,
+                }
+              ]
+            },
+            {
+              name: 'child2BB',
+              peopleNum: 10,
+              showChild: false,
+              children: [
+                {
+                  name: 'childBBA',
+                  peopleNum: 10,
+                },
+                {
+                  name: 'childBBB',
+                  peopleNum: 10,
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 
 
 
