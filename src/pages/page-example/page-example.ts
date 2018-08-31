@@ -10,94 +10,110 @@ export class PageExamplePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.items = [
       {
-        title: '组织架构',
+        title: '组织机构树',
         url: 'comonentsDemoZxjPage',
-        page:'comonentsDemoZxjPage'
+        page:'comonentsDemoZxjPage',
+        type: 'modal'
       },
       {
-        title: '图片查看',
+        title: '相册图片查看器',
         url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
       },
       {
-        title: '视频播放',
+        title: '视频播放器',
         url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
       },
       {
-        title: '图片懒加载',
+        title: '图片列表懒加载组件',
         url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
 
       },
       {
-        title: 'pdf文件查看',
+        title: 'pdf文档阅读器',
         url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
 
       },
       {
-        title: '附件上传',
+        title: '附件上传下载组件(附件压缩传输组件)',
         url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
 
       },
+     
       {
-        title: '下载',
+        title: '相册图片查看器',
         url: 'comonentsDemoZxjPage',
-        content: "file-download",
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
 
       },
-      {
-        title: '轮播图',
-        url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
 
-      },
       {
-        title: 'echart图表',
+        title: '图表组件',
         url: 'comonentsDemoZxjPage',
-        page: 'comonentsDemoZxjPage'
+        page: 'comonentsDemoZxjPage',
+        type: 'modal'
 
       },
       {
         title: '数据校验',
         url: 'TestPage',
-        page: 'TestPage'
+        page: 'TestPage',
+        type: 'modal'
       },
       {
         title: '地理定位、地理轨迹',
         url: 'ComponentMapComponent',
-        page: 'TestPage'
+        page: 'TestPage',
+        type: 'modal'
       },
       {
-        title: '联级列表组件',
-        url: 'SelectComponent',
-        page: 'TestPage'
-      },
-      {
-        title: '联级列表组件一',
+        title: '联级列表组件-侧滑式',
         url: 'SideMenuSelectComponent',
-        page: 'TestPage'
+        page: 'TestPage',
+        type: 'modal'
+      },
+      {
+        title: '联级列表组件-卡片式',
+        url: 'SelectMenuTopComponent',
+        page: 'TestPage',
+        type: 'card'
+      },
+      {
+        title: '联级列表组件-悬浮式',
+        url: 'SelectMenuBottomComponent',
+        page: 'TestPage',
+        type: 'modal'
       },
       {
         title: '分页组件',
         url: 'InfiniteScrollComponent',
-        page: 'TestPage'
+        page: 'TestPage',
+        type: 'modal'
       },
       {
         title: '手写签字组件',
         url: 'SampleSignaturepad',
-        page: 'TestPage'
+        page: 'TestPage',
+        type: 'modal'
       }
     ]
   }
 
-  itemSelected(title, url,page) {
-    this.navCtrl.push(page, {componentTitle: title, componentType: url});
+  itemSelected(title, url, page, type) {
+    this.navCtrl.push(page, {componentTitle: title, componentType: url, type: type});
   }
-  itemSelected2(url){
-    this.navCtrl.push(url);
+  goPage(){
+    this.navCtrl.push('PageTemplatePage');
   }
+
 }

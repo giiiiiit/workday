@@ -1,14 +1,77 @@
 select-component {
-    // .select-box{
-    //     background-color: #fff;
-    //     height: 100%;
-    // }
-    .select1, .select2{
+    .select-tab{
+        background-color: $colorDeep;
+        display: flex;
+        justify-content: space-around;
+        .tab-box{
+            color: #fff;
+            margin: 5px 0;
+            padding: 5px 16px;
+            border-radius: 15px;
+            background-color: transparent;
+            &.active{
+                color: $colorTopic;
+                background-color: #fff;
+            }
+        }
+    }
+    @-webkit-keyframes num {
+        to {
+            -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+            opacity: 1
+        }
+    }
+    
+    @keyframes num {
+        to {
+            -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+            opacity: 1
+        }
+    }
+    
+    @-webkit-keyframes num-move {
+        to {
+            opacity: 0
+        }
+    }
+    
+    @keyframes num-move {
+        to {
+            opacity: 0
+        }
+    }
+    .select{
+        &.side-menu-active{
+            .select1-box, .select2-box{
+                -webkit-animation: num .3s ease-in-out 0s 1 alternate forwards;
+                animation: num .3s ease-in-out 0s 1 alternate forwards
+            }
+            .mash{
+                opacity: 1;
+                -webkit-transition: all .3s;
+                -o-transition: all .3s;
+                transition: all .3s
+            }
+        }
+        &.side-menu-out{
+            .select1-box, .select2-box{
+                -webkit-animation: num-move .3s ease-in-out 0s 1 alternate forwards;
+                animation: num-move .3s ease-in-out 0s 1 alternate forwards
+            }
+            .mash{
+                opacity: 0;
+                -webkit-transition: all .3s;
+                -o-transition: all .3s;
+                transition: all .3s
+            }
+        }
         .mask{
             position: fixed;
             width: 100%;
             height: 100%;
-            top: 0;
+            top: 85px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -73,7 +136,7 @@ select-component {
             width: 100%;
             background-color: #fff;
             position: absolute;
-            top: 0;
+            top: 59px;
             left: 0;
             z-index: 12;
             ul{

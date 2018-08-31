@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { LoadingController } from 'ionic-angular';
 declare var AMap:any;
 declare var window:any;
 @Component({
   selector: 'component-map',
   templateUrl: 'component-map.html'
 })
-
 export class ComponentMapComponent {
   markerIcon: string;
   buttonName: string;
@@ -13,8 +13,11 @@ export class ComponentMapComponent {
   pathLine = [];
   map: any;
   polyline: any;
+  loading = this.loadingController.create({
+    content: "地图正在努力加载",
+  })
   @Input() markers: Array<number>;
-  constructor() {
+  constructor(public loadingController: LoadingController) {
     this.markerIcon = '../../assets/imgs/mapPoint2.png';
     this.buttonName = '生成轨迹';
     this.LineOpa = true;
@@ -32,22 +35,21 @@ export class ComponentMapComponent {
   private drawPolyline() {
     this.polyline = new AMap.Polyline({
       path: this.pathLine, 
-      strokeColor: "#ff4d56", //线颜色
-      strokeOpacity: 1,       //线透明度
-      strokeWeight: 2,        //线宽
-      strokeStyle: "dashed",   //线样式
-      strokeDasharray: [5, 5] //补充线样式
+      strokeColor: "#ff4d56",
+      strokeOpacity: 1,
+      strokeWeight: 2,
+      strokeStyle: "dashed",
+      strokeDasharray: [5, 5]
     })
     this.map.add(this.polyline);
     this.polyline.hide();
   }
   private signPoint() {
     let _this = this;
-    this.map.clearMap();  // 清除地图覆盖物
+    this.map.clearMap();
     let markersicon = new AMap.Icon({
-        image: this.markerIcon,  // Icon的图像
+        image: this.markerIcon,
     });
-    // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
     this.markers.forEach(function(marker) {
         new AMap.Marker({
             map: _this.map,
@@ -58,27 +60,30 @@ export class ComponentMapComponent {
     });
   }
   public getGeolocation() {
+    this.loading.present();
     let geolocation;
     let _this = this;
     AMap.plugin(['AMap.ToolBar', 'AMap.Geolocation'], function() {
       geolocation = new AMap.Geolocation({
-        enableHighAccuracy: true,//是否使用高精度定位，默认:true
-        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-        zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+        enableHighAccuracy: true,
+        timeout: 10000,
+        buttonOffset: new AMap.Pixel(10, 20),
+        zoomToAccuracy: true,
         buttonPosition:'LB'
       });
       _this.map.addControl(geolocation);
       _this.map.addControl(new AMap.ToolBar());
       geolocation.getCurrentPosition();
-      AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-      AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+      AMap.event.addListener(geolocation, 'complete', onComplete);
+      AMap.event.addListener(geolocation, 'error', onError);
       function onComplete (data) {
         _this.pathLine.push(new AMap.LngLat(data.position.lng, data.position.lat))
         _this.drawPolyline();
+        _this.loading.dismiss();
       }
       function onError (data) {
         _this.drawPolyline();
+        _this.loading.dismiss();
       }
     })
   }

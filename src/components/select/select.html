@@ -1,25 +1,26 @@
 <!-- Generated template for the SelectComponent component -->
-<div class="select-box">
-  <div class="select1" #select1>
-    <div class="mask" (click)="close()" [hidden]="!select1Show"></div>
-    <div class="select1-box" [hidden]="!select1Show">
-        <h5>{{title}}</h5>
+<div class="select-wrapper">
+  <div class="select-tab">
+    <div class="tab-box" 
+    *ngFor="let items of data; let tabIndex = index" 
+    (click)="open(tabIndex)" 
+    [ngClass]="{'active': tabStatus === tabIndex}">
+      <span>{{items.tabName}}</span>
+    </div>
+  </div>
+  <div class="select" 
+  *ngFor="let item of data; let menuIndex = index" 
+  [ngClass]="{'side-menu-active': tabStatus === menuIndex, 'side-menu-out': tabStatus !== menuIndex}">
+    <div class="mask" (click)="close(menuIndex)" [hidden]="tabStatus !== menuIndex"></div>
+    <div [ngClass]="{'select1-box': type === 'modal', 'select2-box': type === 'card'}" [hidden]="tabStatus !== menuIndex">
+        <h5 *ngIf="menuType === 'modal'" >{{title}}</h5>
         <ul>
-          <li *ngFor="let item of data" [ngClass]="{'active': item.id === status}" (click)="choseItem(item.id, item.title)">
-            <span>{{item.title}}</span>
-            <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
+          <li *ngFor="let i of item.itemData" [ngClass]="{'active': i.id === status}" (click)="choseItem(i.id, i.title)">
+            <span>{{i.title}}</span>
+            <ion-icon *ngIf="menuType === 'modal'" name="ios-checkmark-circle-outline"></ion-icon>
           </li>
         </ul>
     </div>
-  </div>
-  <div class="select2">
-    <div class="select2-box">
-      <ul>
-        <li *ngFor="let item of data" [ngClass]="{'active': item.id === status}" (click)="choseItem(item.id, item.title)">
-          <span>{{item.title}}</span>
-        </li>
-      </ul>
-  </div>
   </div>
 </div>
 

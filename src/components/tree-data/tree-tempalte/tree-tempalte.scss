@@ -12,7 +12,6 @@ tree-tempalte {
   .hideLine-child {
     border-left: 3px dashed #ffffff !important;
   }
-
   .panel-item-child {
     padding: 15px 0 0 15px;
     width: 100%;
@@ -20,9 +19,8 @@ tree-tempalte {
     min-width:270px;
     display: inline-block;
   }
-
   .panel-item-row1-child {
-    height: 25px;
+    height: 17px;
   }
 
   .panel-item-row2-child {
@@ -33,41 +31,33 @@ tree-tempalte {
     font-size: 14px;
     color: #999;
   }
-
-
-
   .close-open-btn-child {
-    width: 20px;
-    height: 20px;
-    margin: 0 10px;
+    width: 17px;
+    height: 17px;
+    margin: 0 11px;
     float: left;
   }
 
   .child-panel-child {
-    // margin-left: 18px;
-    // border-left: 3px dashed #e0e0e0;
-    // padding: 0 ;
     padding-left: 18px;
     min-width: 270px;
     display: inline-block;
     width: 100%;
   }
-
   .org-name-child {
     display: inline-block;
     float: left;
-    line-height: 25px;
-    font-size: 20px;
+    line-height: 17px;
+    font-size: 17px;
   }
-
   .view-detail-child {
-    float: right;
-    height: 100%;
-    background-color: #ff6169;
-    line-height: 25px;
-    padding: 0 15px;
-    border-radius: 5px;
-    color: #ffffff;
-    margin-right: 15px;
+      float: right;
+      background-color: #ff6169;
+      line-height: 12px;
+      padding: 6px 15px;
+      font-size: 12px;
+      border-radius: 5px;
+      color: #ffffff;
+      margin-right: 15px;
   }
 }

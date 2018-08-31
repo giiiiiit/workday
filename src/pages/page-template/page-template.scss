@@ -1,0 +1,17 @@
+page-page-template {
+    ion-content {
+        background-color: #ffffff !important;
+    }
+    .tab-item{
+        padding: 0 15px;
+        height: 60px;
+        border-bottom: 1px solid #e0e0e0;
+        line-height: 60px;
+        font-size: 18px;
+        img{
+        width: 20px;
+        float: right;
+        margin-top: 20px;
+        }
+    }
+}

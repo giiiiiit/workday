@@ -7,7 +7,7 @@
       <img src="assets/imgs/open-root@3x.png" alt="" (click)="switchChildren(item)" class="close-open-btn" *ngIf="!item.showChild && item.children != undefiend &&item.children.length > 0">
       <img src="assets/imgs/noChild@3x.png" alt="" class="close-open-btn" *ngIf="item.children == undefiend || item.children.length == 0 ">
       <div class="org-name">{{item.name}}</div>
-      <div class="view-detail"  (click)="viewOrg(item)" >{{btnText}}</div>
+      <div class="view-detail"  (click)="viewOrg(item)"  *ngIf="btnText != undefined">{{btnText}}</div>
 
     </div>
     <div class="panel-item-row2" [ngClass]="{'hideLine': !item.showChild || item.children == undefiend || item.children.length == 0}">
@@ -16,7 +16,7 @@
 
     <div *ngIf="item.showChild && item.children != undefiend &&item.children.length > 0 " class="child-panel">
       <div *ngFor="let child of item.children">
-          <tree-tempalte [child] = "child" [targetPage]="targetPage" [paramaName] = "paramaName" [btnText]="'点我切换'"></tree-tempalte>
+          <tree-tempalte [child] = "child" [targetPage]="targetPage" [paramaName] = "paramaName" [btnText]="btnText"></tree-tempalte>
       </div>
     </div>
   </div>

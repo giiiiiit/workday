@@ -18,14 +18,15 @@
         <button ion-button shape="round" style="width: 65%;" color="secondary" fill="outline" (click)="openmodal('side')">预览</button>
     </div>
 
-    <div *ngIf="componentType === 'SelectComponent'" style="text-align: center">
+    <!-- <div *ngIf="componentType === 'SelectComponent'" style="text-align: center">
       <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(1)">样式1</button>
       <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(2)">样式2</button>
       <div style="position: relative;">
-        <select-component #selectComponent *ngIf="componentType === 'SelectComponent'" [data]="selectData" [title]="selectTitle" (onChange)="selectChange($event)"></select-component>
+        
       </div>
-      <!-- <p>{{itemdatas}}</p> -->
-    </div>
+    </div> -->
+    <select-component *ngIf="componentType === 'SelectMenuTopComponent'"  [data]="selectDataMore" [title]="selectTitle" [type]="menutype" (onChange)="selectChange($event)"></select-component>
+    <select-component *ngIf="componentType === 'SelectMenuBottomComponent'"  [data]="selectDataMore" [title]="selectTitle" [type]="menutype" (onChange)="selectChange($event)"></select-component>
 
 </ion-content>
-<side-menu-select *ngIf="componentType === 'SideMenuSelectComponent'" #sidemenuselect></side-menu-select>
+<side-menu-select *ngIf="componentType === 'SideMenuSelectComponent'" [data]="selectData" #sidemenuselect (onChange)="selectChange($event)"></side-menu-select>

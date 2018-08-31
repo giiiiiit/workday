@@ -12,7 +12,7 @@
 
 <ion-content >
 <!-- 图片懒加载 -->
-<div *ngIf="componentTitle =='图片懒加载'" class="center">
+<div *ngIf="componentTitle =='图片列表懒加载组件'" class="center">
     <p class="foo" snInViewport (inViewportChange)="onInViewportChange($event)" style="width:100%;height:200px;border:1px solid">
         Amet tempor excepteur occaecat nulla.
       </p>
@@ -69,7 +69,7 @@
 
 
 <!-- 文件上传 -->
-<div *ngIf="componentTitle =='附件上传'" class="center">
+<div *ngIf="componentTitle =='附件上传下载组件(附件压缩传输组件)'" class="center">
   file：
   <upload-img-video-file [serverUrl]="''" [type]="'file'" (successUpload)="successUpload($event)" (failedUpload)="failedUpload($event)"></upload-img-video-file>
 
@@ -104,7 +104,7 @@ video-select
 
 
 <!-- 组织机构树 -->
-<div *ngIf="componentTitle =='组织架构'"  >
+<div *ngIf="componentTitle =='组织机构树'">
 <tree-data [nodes]="nodes" [targetPage]="'PageExamplePage'" [paramaName]="'qweasd'" [btnText]="'点我切换'"></tree-data>
 </div>
 
@@ -113,27 +113,29 @@ video-select
 
 
 
- <!-- 轮播图 -->
-<div *ngIf="componentTitle =='轮播图'" class="center">
+ 
+<div *ngIf="componentTitle =='相册图片查看器'" class="center">
+  <!-- 轮播图 -->
   <div style="width:100%;height:240px">
-    <slides-component [slidesList]="imgList1" [pagers]="false"></slides-component>
+    <slides-component [slidesList]="imgList1" [pagers]="true"></slides-component>
+  </div>
+  <!-- 图片查看 -->
+  <div style="width:100%;height:100px">
+    <img-list-viewer-component [imgList]="imgList2"></img-list-viewer-component>
   </div>
 </div>
-
 
 
 
 <!-- 视频播放 -->
-<div *ngIf="componentTitle =='视频播放'" class="center">
+<div *ngIf="componentTitle =='视频播放器'" class="center" style="height:211px">
 
-  <div style="height:200px">
-    <videoPlayer-component [videoSrc]="'http://static.videogular.com/assets/videos/videogular.mp4'" [loop]="true" [watermark]="true"
+  <videoPlayer-component [videoSrc]="'http://static.videogular.com/assets/videos/videogular.mp4'" [loop]="true" [watermark]="true"
   [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></videoPlayer-component>
-  </div>
 </div>
 
 
-<div *ngIf="componentTitle =='echart图表'" style="margin-top: 68px;">
+<div *ngIf="componentTitle =='图表组件'" style="margin-top: 68px;">
   <!-- 饼图 -->
   <div >
     <echart-tag [option]="optionPie" [watermark]="true" [watermarkType]="'img'" [watermarkTextOrUrl]="'https://t10.baidu.com/it/u=442769412,4197463608&fm=76'"></echart-tag>
@@ -159,18 +161,13 @@ video-select
 
 
 <!-- pdf文件查看 -->
-<div *ngIf="componentTitle =='pdf文件查看'" style="margin: 100px 10px 0 10px;">
-  <pdf-reader [pdfSrc]="pdfSrc" ></pdf-reader>
+<div *ngIf="componentTitle =='pdf文档阅读器'" style="margin: 100px 10px 0 10px;">
+<pdf-reader [pdfSrc]="pdfSrc" [watermark]="true" [watermarkType]="'text'" [watermarkTextOrUrl]="'sunfield'"></pdf-reader>
 </div>
 
 
 
-<!-- 图片查看 -->
-<div *ngIf="componentTitle =='图片查看'" class="center">
-  <div style="width:100%;height:100px">
-    <img-list-viewer-component [imgList]="imgList2"></img-list-viewer-component>
-  </div>
-</div>
+
 
 
 

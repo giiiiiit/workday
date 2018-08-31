@@ -12,7 +12,6 @@ export class treeTemplateComponent {
   @Input() paramaName: string;
   @Input() btnText: string;
 
-  
   constructor(public navCtrl: NavController) {
   
   }
@@ -28,8 +27,6 @@ export class treeTemplateComponent {
 
   ngOnInit() {  
  
-   
-    
   }
   
 }

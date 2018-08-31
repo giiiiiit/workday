@@ -2,12 +2,31 @@ pdf-reader {
  .pdf-viewer{
    min-height: 450px!important;
  }
-// .search-panel{
-//   width: 75%;
-//   padding: 3px 20px;
-//   border: 1px solid #000;
-//   border-radius: 4px;
-// }
+.searchbar-ios{
+  border: 1px solid #ff6169;
+  padding: 0 8px;
+  min-height: 30px;
+  width: calc(100% - 50px);
+ 
+  background: rgba(0, 0, 0, 0); 
+  border-radius: 8px;
+   .searchbar-input{
+     height: 100%;
+   }
+   .searchbar-search-icon{
+     top: 2px;
+   }
+}
+.download-btn{
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  float: right;
+  margin-top: -30px;
+  img{
+    width: 30px;
+  }
+}
 .text-input-ios{
     padding: 5px 25px;
     width: calc(100% - 28px);
@@ -24,7 +43,16 @@ pdf-reader {
   right: 0;
   top: 5px;
 }
-
+ .waterMark {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   text-align: center;
+   color: black;
+   opacity: 0.3;
+   transform: translate(-50%, -50%);
+   z-index: 999;
+ }
 
  .spinner {
    margin: 100px auto;

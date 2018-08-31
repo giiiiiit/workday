@@ -10,32 +10,35 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: 'select.html'
 })
 export class SelectComponent {
+  tabStatus: string | number;
+  menuStatus: string | number;
   @Input() data: Array<Object>;
   @Input() title: string;
+  @Input() type: string;
   @Output() onChange = new EventEmitter<Object>();
   status: number | string;
-  select1Show: boolean;
-  select2Show: boolean;
+  menuType: string;
   constructor() {
-    console.log('Hello SelectComponent Component');
+    // this.menuType = this.type || 'card';
   }
 
-  public openModal(type) {
-    if (type === 1) {
-      this.select1Show = true;
-    } else if (type === 2) {
-      this.select1Show = true;
-    }
+  public open(index) {
+    this.menuStatus = index;
+    setTimeout(() => {
+      this.tabStatus = index;
+    },0)
   }
 
-  protected close() {
-    this.select1Show = false;
+  public close() {
+    this.tabStatus = '';
+    setTimeout(() => {
+      this.menuStatus = '';
+    },310)
   }
 
-  private choseItem(id, title) {
+  choseItem(id, title) {
     if (this.status === id) return; 
     this.status = id;
     this.onChange.emit({id: id, title: title})
-    this.close();
   }
 }

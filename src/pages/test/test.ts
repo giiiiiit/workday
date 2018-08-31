@@ -12,13 +12,20 @@ export class TestPage {
   @ViewChild('sidemenuselect') sidemenuSelect:any;
   componentType: string;
   componentTitle: string;
+  menutype: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private feedback: Feedback) {
-    console.log(this.navParams.get('componentType'));
+    // console.log(this.navParams.get('type'));
     this.componentTitle = this.navParams.get('componentTitle');
+    this.menutype = this.navParams.get('type');
     if (!this.navParams.get('componentType')) {
-      this.componentType = 'SampleSignaturepad';
+      this.componentType = 'SideMenuSelectComponent';
     } else {
       this.componentType = this.navParams.get('componentType');
+      if (this.componentType === 'SelectMenuTopComponent') {
+        this.menutype = 'card'
+      } else if (this.componentType === 'SelectMenuBottomComponent') {
+        this.menutype = 'modal'
+      }
     }
   }
   // 联级组件数据
@@ -56,6 +63,24 @@ export class TestPage {
       title: '废品'
     }
   ];
+  selectDataMore = [
+    {
+      tabName: '区域',
+      itemData: this.selectData
+    },
+    {
+      tabName: '分类',
+      itemData: this.selectData
+    },
+    {
+      tabName: '价格',
+      itemData: this.selectData
+    },
+    {
+      tabName: '成色',
+      itemData: this.selectData
+    }
+  ];
   selectTitle = '请选择成色';
   itemdatas: string;
   selectChange(itemdata: Object) {
@@ -90,7 +115,10 @@ export class TestPage {
   }
   onsignImgUrl(ImgUrl: String){
     console.log('返回成功')
-    console.log(ImgUrl)
+    console.log(ImgUrl);
+    this.feedback.Toast({
+      msg: '图片返回成功'
+    });
   }
 
 }

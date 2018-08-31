@@ -17,22 +17,31 @@ export class SideMenuSelectComponent {
   showMenu: boolean = false;
   showMask: boolean = true;
   widths: string;
+  titles: string;
+  status: number | string;
   @Input() data: Array<Object>;
   @Input() title: string;
   @Input() styleWidth: string;
   @Output() onChange = new EventEmitter<Object>();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.widths = this.styleWidth || '65%';
+    this.titles = this.title || '请选择';
   }
 
-  open() {
+  private chooseItem(id, title) {
+    if (this.status === id) return; 
+    this.status = id;
+    this.onChange.emit({id: id, title: title});
+  }
+
+  public open() {
     this.showMask = false;
     setTimeout(() => {
       this.showMenu = true;
     },0)
   }
 
-  close() {
+  public close() {
     this.showMenu = false;
     setTimeout(() => {
       this.showMask = true;

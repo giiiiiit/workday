@@ -1,5 +1,7 @@
 <!-- Generated template for the ComponentExampleComponent component -->
 <div style=" min-height: 450px!important;position: relative">
+  <p class="waterMark" *ngIf="watermark==true && watermarkType =='text'" [hidden]="loader">{{watermarkTextOrUrl}}</p>
+  <img class="waterMark" src="{{watermarkTextOrUrl}}" alt="" *ngIf="watermark==true && watermarkType =='img'" style="width: 10%;" [hidden]="loader">
   <div class="spinner" [hidden]="!loader" style="position: absolute;left: 48%">
     <div class="spinner-container container1">
       <div class="circle1"></div>
@@ -21,10 +23,12 @@
     </div>
   </div>
   <div style="position:relative">
-    <!-- <input class="search-panel" type="text" [(ngModel)]="keyword" (ngModelChange)="search(keyword)" [hidden]="loader"> -->
-    <ion-input  [(ngModel)]="keyword" (ionChange)="search(keyword)"  ></ion-input>
-    <ion-icon ios="ios-search" md="md-search" class="search"  placeholder="请搜索"></ion-icon>
-    <ion-icon name="ios-cloud-download-outline" (click)="download()" class="download"></ion-icon>
+    <ion-searchbar mode="ios" placeholder="请输入关键字"   [(ngModel)]="keyword" (ionChange)="search(keyword)" >
+    </ion-searchbar>
+    <div class="download-btn"  (click)="download()">
+      <img src="assets/imgs/download.png" alt="" sizes="" srcset="">
+    </div>
+
   </div>
   <pdf-viewer [src]="pdfSrc2" [render-text]="true" style="display: block;max-height:450px;overflow-y: scroll" [autoresize]="true" [show-all]="true" [page]="1" [original-size]="false" (after-load-complete)="complete($event)" >
   </pdf-viewer>
