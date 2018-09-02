@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 /**
- * Generated class for the DetailEditPage page.
+ * Generated class for the SettingEditPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -9,16 +10,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-detail-edit',
-  templateUrl: 'detail-edit.html',
+  selector: 'page-setting-edit',
+  templateUrl: 'setting-edit.html',
 })
-export class DetailEditPage {
-  textareaValue: string = '';
-  textareaValueLength: number = 0;
+export class SettingEditPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-  textareaValueChange(value: string) {
-    if (value.length > 5000) return;
-    this.textareaValueLength = value.length;
+  name = '周周周';
+  popPage() {
+    this.navCtrl.pop();
+  }
+  clearValue() {
+    this.name = '';
   }
 }

@@ -5,28 +5,26 @@
 </ion-header>
 
 <ion-content>
-
+    <!-- 手写签名板 -->
     <page-sample-signaturepad *ngIf="componentType === 'SampleSignaturepad'" [signpadOptions]='signpadOptionsValue' (signImgUrl)="onsignImgUrl($event)"></page-sample-signaturepad>
-    
+
+    <!-- 地图 -->
     <component-map *ngIf="componentType === 'ComponentMapComponent'" [markers]="markers"></component-map>
 
+    <!-- 上拉加载，下拉刷新 -->
     <ioninfinite-scroll *ngIf="componentType === 'InfiniteScrollComponent'"></ioninfinite-scroll>
     
-    
-    
+    <!-- 侧滑菜单-预览按钮 -->
     <div  *ngIf="componentType === 'SideMenuSelectComponent'" style="text-align: center;margin-top: 50px;">
         <button ion-button shape="round" style="width: 65%;" color="secondary" fill="outline" (click)="openmodal('side')">预览</button>
     </div>
 
-    <!-- <div *ngIf="componentType === 'SelectComponent'" style="text-align: center">
-      <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(1)">样式1</button>
-      <button ion-button shape="round" size="small" color="secondary" fill="outline" (click)="openmodal(2)">样式2</button>
-      <div style="position: relative;">
-        
-      </div>
-    </div> -->
+    <!-- 级联列表-卡片式 -->
     <select-component *ngIf="componentType === 'SelectMenuTopComponent'"  [data]="selectDataMore" [title]="selectTitle" [type]="menutype" (onChange)="selectChange($event)"></select-component>
+
+    <!-- 级联列表-悬浮式 -->
     <select-component *ngIf="componentType === 'SelectMenuBottomComponent'"  [data]="selectDataMore" [title]="selectTitle" [type]="menutype" (onChange)="selectChange($event)"></select-component>
 
 </ion-content>
+<!-- 侧滑菜单（因z-index关系，需放在ion-content标签之外） -->
 <side-menu-select *ngIf="componentType === 'SideMenuSelectComponent'" [data]="selectData" #sidemenuselect (onChange)="selectChange($event)"></side-menu-select>

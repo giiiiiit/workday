@@ -14,12 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'layout-tab-top.html',
 })
 export class LayoutTabTopPage {
-
+  tabStatus = 1;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LayoutTabTopPage');
+  choseTab(type) {
+    this.tabStatus = type;
   }
-
 }

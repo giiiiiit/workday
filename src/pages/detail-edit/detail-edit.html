@@ -30,8 +30,9 @@
     </div>
     <div class="edit-box content-box">
       <p>文章详情</p>
-      <div class="word-input" #wordInput contenteditable="true">
-        <span>请输入驳回原因...</span>
+      <div class="text-box">
+          <textarea placeholder="请输入驳回原因..." style="resize: none;" [(ngModel)]="textareaValue" (ngModelChange)="textareaValueChange($event)" maxlength="5000"></textarea>
+          <span>{{textareaValueLength}}/5000</span>
       </div>
     </div>
   </div>

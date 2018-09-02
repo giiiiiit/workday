@@ -14,7 +14,7 @@ import { Feedback } from '../base/Feedback';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +27,7 @@ import { Feedback } from '../base/Feedback';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
     Feedback,

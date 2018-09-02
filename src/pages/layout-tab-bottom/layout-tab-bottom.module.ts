@@ -9,5 +9,8 @@ import { LayoutTabBottomPage } from './layout-tab-bottom';
   imports: [
     IonicPageModule.forChild(LayoutTabBottomPage),
   ],
+  entryComponents: [
+    LayoutTabBottomPage,
+  ]
 })
 export class LayoutTabBottomPageModule {}

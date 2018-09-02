@@ -1,4 +1,10 @@
 page-layout-menu {
+    .content-button{
+        text-align: center;
+        button{
+            width: 75%;
+        }
+    }
     .side-menu{
         .mash{
             position: fixed;

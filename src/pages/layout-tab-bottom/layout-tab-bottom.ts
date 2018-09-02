@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**
  * Generated class for the LayoutTabBottomPage page.
  *
@@ -14,12 +13,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'layout-tab-bottom.html',
 })
 export class LayoutTabBottomPage {
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LayoutTabBottomPage');
-  }
-
+  tab1Root = 'DetailPage';
+  tab2Root = 'DetailEditPage';
+  tab3Root = 'LoginPage';
 }

@@ -14,7 +14,9 @@
 
 
 <ion-content padding>
-  <button ion-button color="danger" (click)="open()">open</button>
+  <div class="content-button">
+      <button ion-button color="danger" (click)="open()">打开菜单</button>
+  </div>
 </ion-content>
 <div class="side-menu" [ngClass]="{'side-menu-active': showMenu, 'side-menu-out': !showMenu}">
   <div class="mash" (click)="close()" [hidden]="showMask"></div>

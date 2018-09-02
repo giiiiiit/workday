@@ -66,8 +66,8 @@ export class PageExamplePage {
       },
       {
         title: '数据校验',
-        url: 'TestPage',
-        page: 'TestPage',
+        url: 'FormPage',
+        page: 'FormPage',
         type: 'modal'
       },
       {

@@ -11,9 +11,15 @@
 </ion-header>
 <ion-content>
   <div class="top-tab">
-    <p class="active">功能名称</p>
-    <p>功能名称</p>
-    <p>功能名称</p>
-    <p>功能名称</p>
+    <p [ngClass]="{'active': tabStatus === 1}" (click)="choseTab(1)">功能一</p>
+    <p [ngClass]="{'active': tabStatus === 2}" (click)="choseTab(2)">功能二</p>
+    <p [ngClass]="{'active': tabStatus === 3}" (click)="choseTab(3)">功能三</p>
+    <p [ngClass]="{'active': tabStatus === 4}" (click)="choseTab(4)">功能四</p>
+  </div>
+  <div class="content-tab">
+    <div *ngIf="tabStatus === 1">功能一</div>
+    <div *ngIf="tabStatus === 2">功能二</div>
+    <div *ngIf="tabStatus === 3">功能三</div>
+    <div *ngIf="tabStatus === 4">功能四</div>
   </div>
 </ion-content>

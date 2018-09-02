@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
 import { Feedback } from '../../base/Feedback';
 @IonicPage()
 @Component({
@@ -13,7 +13,7 @@ export class TestPage {
   componentType: string;
   componentTitle: string;
   menutype: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private feedback: Feedback) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private feedback: Feedback, public alertCtrl: AlertController) {
     // console.log(this.navParams.get('type'));
     this.componentTitle = this.navParams.get('componentTitle');
     this.menutype = this.navParams.get('type');
@@ -113,12 +113,18 @@ export class TestPage {
     penColor: '#eee', // 画笔颜色
     backgroundColor: '#fff' // 背景颜色
   }
-  onsignImgUrl(ImgUrl: String){
+  onsignImgUrl(ImgUrl: string){
     console.log('返回成功')
     console.log(ImgUrl);
     this.feedback.Toast({
-      msg: '图片返回成功'
+      msg: '图片生成为: base64' + ImgUrl
     });
+    // const alert = this.alertCtrl.create({
+    //   title: '生成为base64',
+    //   subTitle: ImgUrl,
+    //   buttons: ['确定']
+    // });
+    // alert.present();
   }
 
 }
