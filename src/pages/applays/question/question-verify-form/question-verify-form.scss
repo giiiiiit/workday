@@ -1,0 +1,98 @@
+page-question-verify-form {
+    .list{
+        margin-top: 8px;
+        padding-bottom: 8px;
+        background-color: #fff;
+        &:last-child{
+            padding-bottom: 0;
+        }
+        .list-title{
+            font-size: rem(18);
+            line-height: rem(18);
+            position: relative;
+            padding: 10px 0 10px 15px;
+            border-bottom: 1px solid $colorLine;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &::before{
+                content: '';
+                position: absolute;
+                top: rem(10);
+                left: rem(14);
+                width: 3px;
+                height: rem(18);
+                background-color: $colorTopic;
+            }
+            p{
+                margin: 0;
+                padding-left: 8px;
+            }
+        }
+        .list-content{
+            padding: 0 15px;
+            .radio-box{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 5px;
+                &:first-child{
+                    border-bottom: 1px solid #e0dfdf;
+                }
+                p{
+                    line-height: 20px;
+                    font-size: 16px;
+                }
+                span{
+                    height: 16px;
+                    width: 16px;
+                    border-radius: 50%;
+                    border: 1px solid #666;
+                    background-color: #fff;
+                }
+                &.active{
+                    span{
+                        background-color: $colorTopic;
+                        border-color: $colorTopic;
+                    }
+                }
+            }
+        }
+        .text-box{
+            position: relative;
+            background-color: #f6f6f6;
+            margin-top: 10px;
+            padding: 12px 12px 20px;
+            margin: 10px 15px 0;
+            textarea{
+                height: 100px;
+                width: 100%;
+                background-color: #f6f6f6;
+                padding: 0;
+                border: 0;
+            }
+            span{
+                position: absolute;
+                bottom: 6px;
+                right: 15px;
+                font-size: rem(12);
+                color: #868585;
+            }
+        }
+    }
+    .login-button{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        button{
+            width: 100%;
+            background-color: $colorTopic;
+            // border: 1px solid $colorTopic;
+            color: #fff;
+            border-radius: 0;
+            padding: 20px 0;
+            font-size: rem(18);
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<!-- <ion-header>
+
+</ion-header> -->
+
+<ion-content>
+<div class="title-part">
+  <form style="width:82%">
+    <input name=keyword style="height: 30px;width:100%;padding: 2px 10px;" [(ngModel)]="searchText" type="search"
+      placeholder="搜索" ng-model="query">
+    <button style="display:none" (click)="searchSelect(searchText)"></button>
+  </form>
+  <div (click)="back()" class="cancle">取消</div>
+
+</div>
+
+</ion-content>
+
+

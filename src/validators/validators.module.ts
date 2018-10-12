@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { TextMaskModule } from 'angular2-text-mask';
+// import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   exports: [
-		TextMaskModule
+		// TextMaskModule
   ]
 })
 export class ValidatorsModule {}

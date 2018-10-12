@@ -1,0 +1,110 @@
+page-task-detail {
+    .task-head{
+        background-color: #fff;
+        margin: 8px 0;
+        p{
+            margin: 12px 0;
+        }
+        .head-box{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $colorLine;
+            padding: 0 15px;
+            p{
+                font-size: rem(16);
+            }
+            span{
+                font-size: rem(16);
+                color: #777;
+            }
+        }
+        .head-second{
+            display: flex;
+            padding: 0 15px;
+            color: #777;
+            font-size: rem(16);
+            .second-box{
+                flex: 1;
+                padding: 5px 0;
+                span{
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+                &:first-child{
+                    border-right: 1px solid $colorLine;
+                    span{
+                        color: #40a6ff;
+                    }
+                }
+                &:last-child{
+                    p{
+                        padding-left:15px;
+                    }
+                    span{
+                        color: $colorTopic;
+                    }
+                }
+            }
+        }
+    }
+    .task-body{
+        background-color: #fff;
+        height: 100%;
+        .body-title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid $colorLine;
+            p{
+                font-size: rem(16);
+                margin: 10px 0;
+                img{
+                    width: 20px;
+                    vertical-align: middle;
+                }
+                span{
+                    vertical-align: middle;
+                    margin-left: 3px;
+                    color: $colorTopic;
+                }
+            }
+        }
+        .body-wrap{
+            padding: 0 15px 10px;
+            p{
+                margin: 0;
+                margin-top: 12px;
+                color: #707070;
+                font-size: rem(16);
+            }
+            .box-content{
+                padding-left: 10px;
+                margin-top: 8px;
+                .content{
+                    border: 1px solid $colorTopic;
+                    padding: 8px;
+                    margin-bottom: 8px;
+                    font-size: rem(16);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    &.active{
+                        border: 1px solid #f6f6f6;
+                        background-color: #f6f6f6;
+                    }
+                    p{
+                        margin: 0;
+                    }
+                    span{
+                        color: #40a6ff;
+                    }
+                }
+            }
+        }
+    }
+}

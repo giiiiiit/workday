@@ -1,0 +1,75 @@
+library-search {
+   ion-header {
+     background-color: #c7000b;
+     padding: 15px 10px 5px 10px;
+     .backBtn{
+       display: inline-block;
+       float: left;
+       img{
+         width:3rem;
+         height: 3rem;
+       }
+     }
+     .search-part{
+       float: left;
+       width: calc(100% - 3rem);
+     }
+   }
+  .searchbar-md {
+    background-color: #F2F4F7;
+    height: 50px;
+    padding: 4px 8px 4px 8px;
+  }
+  .searchbar-ios{
+    background: none!important;
+    min-height:0;
+  }
+  .toolbar .searchbar-ios .searchbar-input{
+  background-color: white !important;
+  
+  }
+  .searchbar-ios .searchbar-input{
+    border-radius:0px !important;
+  }
+  .searchbar-md .searchbar-input {
+    box-shadow: none;
+    border: #F2F4F7 solid 1px;
+    border-radius: 5px;
+    height: 34px;
+   
+  }
+
+  .searchbar-md .searchbar-search-icon {
+    left: 8px;
+    top: 8px;
+  }
+
+  .searchbar-md .searchbar-input {
+    padding: 6px 35px;
+  }
+
+
+
+
+  .item-inner {
+    border-bottom-width: 0 !important;
+    border: none;
+    text-align: left;
+    .input-wrapper{
+      ion-label{
+        margin: 0;
+        line-height: 6rem;
+      }
+    }
+  }
+
+  .search-item {
+    border-top: 1px solid #F2F4F7 !important;
+  
+  }
+
+  .search-item:first-child {
+    border-top: none !important;
+  }
+
+}

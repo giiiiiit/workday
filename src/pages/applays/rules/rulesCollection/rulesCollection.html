@@ -1,0 +1,112 @@
+
+<ion-content>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <div class="search" (click)="goSearch()">
+      <img src="assets/imgs/search.png" alt="">
+      <span style="line-height:33px;">请输入法规标题/法规标号</span>
+    </div>
+  </div>
+  <div *ngIf="activeFooterTab == '0'">
+    <div class="tabs-container">
+      <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">全部</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">国家法规</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '2'}" (click)="switchTab('2')">行政法规</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '3'}" (click)="switchTab('3')">部门规定</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '4'}" (click)="switchTab('4')">地方法规</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '5'}" (click)="switchTab('5')">企业法规</span></div>
+   
+   </div>
+    <div *ngIf="activeTab == '0'">
+      <div *ngIf="pdfList.length ==0" class="nothing-container"> 
+        <div  class="nothing">
+          <img src="assets/imgs/nothing.png" alt="">
+        </div>
+        <p>暂无我的收藏</p>
+      </div>
+      <div *ngFor="let item of pdfList"  >
+        <div class="flex-container" (click)="goDetail()">
+            <div class="first-child">
+              <img src="assets/imgs/pdf@3x.png" alt="" sizes="" srcset="">
+              <div class="title">
+                  {{item.title}}
+              </div>
+            </div>
+            <div class="last-child">法规标号：<span style="color:red">GB1111-1</span><span style="float:right">2018-08-08</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="activeTab != '0'">
+      <div *ngIf="pdfList.length ==0" class="nothing-container"> 
+        <div  class="nothing">
+          <img src="assets/imgs/nothing.png" alt="">
+        </div>
+        <p>暂无我的收藏</p>
+      </div>
+      <div *ngFor="let item of pdfList" >
+        <div class="flex-container" (click)="goDetail()" >
+            <div class="first-child">
+              <img src="assets/imgs/pdf@3x.png" alt="" sizes="" srcset="">
+              <div class="title">
+                  {{item.title}}
+              </div>
+            </div>
+            <div class="last-child">法规标号：<span style="color:red">GB1111-1</span><span style="float:right">2018-08-08</span></div>
+        </div>
+      </div>
+    </div>
+    
+
+    
+  </div>
+  <div  *ngIf="activeFooterTab == '1'" style="height:100%">
+    <div class="column-container">
+      <div class="column-item tab-column">
+        <div class="tab-item" *ngFor="let item of classList" [ngClass]="{'tab-item-active': item.name == activeClass.name}" (click)="switchClassTab(item)">{{item.name}}</div>
+       
+      </div>
+      <div class="tag-item-container">
+        <div class="column-item tag-item" *ngFor="let item of activeClass.tags " (click)="goList()">{{item}}</div>
+      </div>
+     
+    </div>
+  </div>
+  <div *ngIf="activeFooterTab == '2'">
+    <div *ngIf="pdfList.length ==0" class="nothing-container"> 
+        <div  class="nothing">
+          <img src="assets/imgs/nothing.png" alt="">
+        </div>
+        <p>暂无我的收藏</p>
+      </div>
+      <div *ngFor="let item of pdfList" style="display: flex;" >
+        <div class="flex-container" >
+            <div class="first-child">
+              <img src="assets/imgs/pdf@3x.png" alt="" sizes="" srcset="">
+              <div class="title">
+                  {{item.title}}
+              </div>
+            </div>
+            <div class="last-child">法规标号：<span style="color:red">GB1111-1</span><span style="float:right">2018-08-08</span></div>
+        </div>
+      </div>    
+  </div>
+
+  
+  
+</ion-content>
+<ion-footer>
+  <div class="footer-btn footer-btn-normal " [ngClass]="{'footer-btn-active': activeFooterTab == '0'}" (click)="switchFooterTab('0')">
+    <span>新规速递</span> 
+    
+  </div>
+  <div class="footer-btn footer-btn-normal" [ngClass]="{'footer-btn-active': activeFooterTab == '1'}" (click)="switchFooterTab('1')">
+    <span>分类查询</span> 
+    
+  </div>
+  <div class="footer-btn footer-btn-normal" [ngClass]="{'footer-btn-active': activeFooterTab == '2'}" (click)="switchFooterTab('2')">
+    <span>我的收藏</span> 
+  </div>
+</ion-footer>

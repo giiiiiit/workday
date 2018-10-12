@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title (click)="goPage()">组件库</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content> 
+  <ion-list>
+
+    <div *ngFor="let item of items;" (click)="itemSelected(item.title, item.url, item.page, item.type)" 
+    class="tab-item">
+       {{ item.title }}
+        <img src="assets/imgs/rightArrow@3x.png" alt="">
+    </div >
+  </ion-list>
+</ion-content>
+

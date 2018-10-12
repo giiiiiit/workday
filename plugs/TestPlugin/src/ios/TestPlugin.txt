@@ -1,0 +1,576 @@
+/********* TestPlugin.m Cordova Plugin Implementation *******/
+
+
+#import <Cordova/CDV.h>
+#import <sqlite3.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+
+#pragma mark --------- BEGIN FMEncryptDatabase ---------
+@interface FMEncryptDatabase : FMDatabase
+{
+    NSString *_encryptKey;
+}
+@end
+
+@implementation FMEncryptDatabase
+
++ (instancetype)databaseWithPath:(NSString*)aPath encryptKey:(NSString *)encryptKey
+{
+    return [[[self class] alloc] initWithPath:aPath encryptKey:encryptKey];
+}
+
+- (instancetype)initWithPath:(NSString*)aPath encryptKey:(NSString *)encryptKey
+{
+    if (self = [self initWithPath:aPath]) {
+        _encryptKey = encryptKey;
+    }
+    return self;
+}
+
+
+// Override Method
+- (BOOL)open
+{
+    BOOL res = [super open];
+    if (res && _encryptKey) {
+        //数据库open后设置加密key
+        [self setKey:_encryptKey];
+    }
+    return res;
+}
+
+#if SQLITE_VERSION_NUMBER >= 3005000
+- (BOOL)openWithFlags:(int)flags vfs:(NSString *)vfsName
+{
+    BOOL res = [super openWithFlags:flags vfs:vfsName];
+    if (res && _encryptKey) {
+        //数据库open后设置加密key
+        [self setKey:_encryptKey];
+    }
+    return res;
+}
+
+#endif
+
+@end
+#pragma mark --------- END FMEncryptDatabase ---------
+
+#pragma mark --------- BEGIN FMEncryptDatabaseQueue ---------
+static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey;
+
+@interface FMEncryptDatabaseQueue : NSObject
+{
+    dispatch_queue_t    _queue;
+    FMDatabase          *_db;
+    NSString *_encryptKey;
+}
+@property (atomic, retain) NSString *path;
+@property (atomic, readonly) int openFlags;
+@end
+
+@implementation FMEncryptDatabaseQueue
+
+@synthesize path = _path;
+@synthesize openFlags = _openFlags;
+
++ (instancetype)databaseQueueWithPath:(NSString*)aPath encryptKey:(NSString *)encryptKey {
+    
+    id q = [[self alloc] initWithPath:aPath encryptKey:encryptKey];
+    
+    FMDBAutorelease(q);
+    
+    return q;
+}
+
++ (instancetype)databaseQueueWithPath:(NSString*)aPath flags:(int)openFlags encryptKey:(NSString *)encryptKey {
+    
+    id q = [[self alloc] initWithPath:aPath flags:openFlags encryptKey:encryptKey];
+    
+    FMDBAutorelease(q);
+    
+    return q;
+}
+
++ (Class)databaseClass {
+    return [FMEncryptDatabase class];
+}
+
+- (instancetype)initWithPath:(NSString*)aPath flags:(int)openFlags vfs:(NSString *)vfsName encryptKey:(NSString *)encryptKey {
+    
+    if (self == [super init]) {
+        _encryptKey = encryptKey;
+        _db = [[[self class] databaseClass] databaseWithPath:aPath encryptKey:encryptKey];
+        FMDBRetain(_db);
+        
+#if SQLITE_VERSION_NUMBER >= 3005000
+        BOOL success = [_db openWithFlags:openFlags vfs:vfsName];
+#else
+        BOOL success = [_db open];
+#endif
+        if (!success) {
+            NSLog(@"Could not create database queue for path %@", aPath);
+            FMDBRelease(self);
+            return 0x00;
+        }
+        
+        _path = FMDBReturnRetained(aPath);
+        
+        _queue = dispatch_queue_create([[NSString stringWithFormat:@"fmdb.%@", self] UTF8String], NULL);
+        dispatch_queue_set_specific(_queue, kDispatchQueueSpecificKey, (__bridge void *)self, NULL);
+        _openFlags = openFlags;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithPath:(NSString*)aPath flags:(int)openFlags encryptKey:(NSString *)encryptKey {
+    return [self initWithPath:aPath flags:openFlags vfs:nil encryptKey:encryptKey];
+}
+
+- (instancetype)initWithPath:(NSString*)aPath encryptKey:(NSString *)encryptKey {
+    
+    // default flags for sqlite3_open
+    return [self initWithPath:aPath flags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE vfs:nil encryptKey:encryptKey];
+}
+
+- (instancetype)init {
+    return [self initWithPath:nil encryptKey:nil];
+}
+
+
+- (void)dealloc {
+    
+    FMDBRelease(_db);
+    FMDBRelease(_path);
+    
+    if (_queue) {
+        FMDBDispatchQueueRelease(_queue);
+        _queue = 0x00;
+    }
+#if ! __has_feature(objc_arc)
+    [super dealloc];
+#endif
+}
+
+- (void)close {
+    FMDBRetain(self);
+    dispatch_sync(_queue, ^() {
+        [self->_db close];
+        FMDBRelease(_db);
+        self->_db = 0x00;
+    });
+    FMDBRelease(self);
+}
+
+- (FMDatabase*)database {
+    if (!_db) {
+        _db = FMDBReturnRetained([[[self class] databaseClass] databaseWithPath:_path encryptKey:_encryptKey]);
+        
+#if SQLITE_VERSION_NUMBER >= 3005000
+        BOOL success = [_db openWithFlags:_openFlags];
+#else
+        BOOL success = [_db open];
+#endif
+        if (!success) {
+            NSLog(@"FMDatabaseQueue could not reopen database for path %@", _path);
+            FMDBRelease(_db);
+            _db  = 0x00;
+            return 0x00;
+        }
+    }
+    
+    return _db;
+}
+
+- (void)inDatabase:(void (^)(FMDatabase *db))block {
+    /* Get the currently executing queue (which should probably be nil, but in theory could be another DB queue
+     * and then check it against self to make sure we're not about to deadlock. */
+    id currentSyncQueue = (__bridge id)dispatch_get_specific(kDispatchQueueSpecificKey);
+    assert(currentSyncQueue != self && "inDatabase: was called reentrantly on the same queue, which would lead to a deadlock");
+    
+    FMDBRetain(self);
+    
+    dispatch_sync(_queue, ^() {
+        
+        FMDatabase *db = [self database];
+        block(db);
+        
+        if ([db hasOpenResultSets]) {
+            NSLog(@"Warning: there is at least one open result set around after performing [FMDatabaseQueue inDatabase:]");
+            
+#if defined(DEBUG) && DEBUG
+            NSSet *openSetCopy = FMDBReturnAutoreleased([[db valueForKey:@"_openResultSets"] copy]);
+            for (NSValue *rsInWrappedInATastyValueMeal in openSetCopy) {
+                FMResultSet *rs = (FMResultSet *)[rsInWrappedInATastyValueMeal pointerValue];
+                NSLog(@"query: '%@'", [rs query]);
+            }
+#endif
+        }
+    });
+    
+    FMDBRelease(self);
+}
+
+
+- (void)beginTransaction:(BOOL)useDeferred withBlock:(void (^)(FMDatabase *db, BOOL *rollback))block {
+    FMDBRetain(self);
+    dispatch_sync(_queue, ^() {
+        
+        BOOL shouldRollback = NO;
+        
+        if (useDeferred) {
+            [[self database] beginDeferredTransaction];
+        }
+        else {
+            [[self database] beginTransaction];
+        }
+        
+        block([self database], &shouldRollback);
+        
+        if (shouldRollback) {
+            [[self database] rollback];
+        }
+        else {
+            [[self database] commit];
+        }
+    });
+    
+    FMDBRelease(self);
+}
+
+- (void)inDeferredTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
+    [self beginTransaction:YES withBlock:block];
+}
+
+- (void)inTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
+    [self beginTransaction:NO withBlock:block];
+}
+
+- (NSError*)inSavePoint:(void (^)(FMDatabase *db, BOOL *rollback))block {
+#if SQLITE_VERSION_NUMBER >= 3007000
+    static unsigned long savePointIdx = 0;
+    __block NSError *err = 0x00;
+    FMDBRetain(self);
+    dispatch_sync(_queue, ^() {
+        
+        NSString *name = [NSString stringWithFormat:@"savePoint%ld", savePointIdx++];
+        
+        BOOL shouldRollback = NO;
+        
+        if ([[self database] startSavePointWithName:name error:&err]) {
+            
+            block([self database], &shouldRollback);
+            
+            if (shouldRollback) {
+                // We need to rollback and release this savepoint to remove it
+                [[self database] rollbackToSavePointWithName:name error:&err];
+            }
+            [[self database] releaseSavePointWithName:name error:&err];
+            
+        }
+    });
+    FMDBRelease(self);
+    return err;
+#else
+    NSString *errorMessage = NSLocalizedString(@"Save point functions require SQLite 3.7", nil);
+    if (self.logsErrors) NSLog(@"%@", errorMessage);
+    return [NSError errorWithDomain:@"FMDatabase" code:0 userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+#endif
+}
+
+@end
+#pragma mark --------- END FMEncryptDatabaseQueue ---------
+
+#pragma mark --------- BEGIN FMEncryptHelper ---------
+@interface FMEncryptHelper : NSObject
+
+@end
+
+@implementation FMEncryptHelper
+
+/** encrypt sqlite database (same file) */
++ (BOOL)encryptDatabase:(NSString *)path encryptKey:(NSString *)encryptKey
+{
+    NSString *sourcePath = path;
+    NSString *targetPath = [NSString stringWithFormat:@"%@.tmp.db", path];
+    
+    if([self encryptDatabase:sourcePath targetPath:targetPath encryptKey:encryptKey]) {
+        NSFileManager *fm = [[NSFileManager alloc] init];
+        [fm removeItemAtPath:sourcePath error:nil];
+        [fm moveItemAtPath:targetPath toPath:sourcePath error:nil];
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+/** decrypt sqlite database (same file) */
++ (BOOL)unEncryptDatabase:(NSString *)path encryptKey:(NSString *)encryptKey
+{
+    NSString *sourcePath = path;
+    NSString *targetPath = [NSString stringWithFormat:@"%@.tmp.db", path];
+    
+    if([self unEncryptDatabase:sourcePath targetPath:targetPath encryptKey:encryptKey]) {
+        NSFileManager *fm = [[NSFileManager alloc] init];
+        [fm removeItemAtPath:sourcePath error:nil];
+        [fm moveItemAtPath:targetPath toPath:sourcePath error:nil];
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+/** encrypt sqlite database to new file */
++ (BOOL)encryptDatabase:(NSString *)sourcePath targetPath:(NSString *)targetPath encryptKey:(NSString *)encryptKey
+{
+    const char* sqlQ = [[NSString stringWithFormat:@"ATTACH DATABASE '%@' AS encrypted KEY '%@';", targetPath, encryptKey] UTF8String];
+    
+    sqlite3 *unencrypted_DB;
+    if (sqlite3_open([sourcePath UTF8String], &unencrypted_DB) == SQLITE_OK) {
+        char *errmsg;
+        // Attach empty encrypted database to unencrypted database
+        sqlite3_exec(unencrypted_DB, sqlQ, NULL, NULL, &errmsg);
+        if (errmsg) {
+            NSLog(@"%@", [NSString stringWithUTF8String:errmsg]);
+            sqlite3_close(unencrypted_DB);
+            return NO;
+        }
+        
+        // export database
+        sqlite3_exec(unencrypted_DB, "SELECT sqlcipher_export('encrypted');", NULL, NULL, &errmsg);
+        if (errmsg) {
+            NSLog(@"%@", [NSString stringWithUTF8String:errmsg]);
+            sqlite3_close(unencrypted_DB);
+            return NO;
+        }
+        
+        // Detach encrypted database
+        sqlite3_exec(unencrypted_DB, "DETACH DATABASE encrypted;", NULL, NULL, &errmsg);
+        if (errmsg) {
+            NSLog(@"%@", [NSString stringWithUTF8String:errmsg]);
+            sqlite3_close(unencrypted_DB);
+            return NO;
+        }
+        
+        sqlite3_close(unencrypted_DB);
+        
+        return YES;
+    }
+    else {
+        sqlite3_close(unencrypted_DB);
+        NSAssert1(NO, @"Failed to open database with message '%s'.", sqlite3_errmsg(unencrypted_DB));
+        
+        return NO;
+    }
+}
+
+/** decrypt sqlite database to new file */
++ (BOOL)unEncryptDatabase:(NSString *)sourcePath targetPath:(NSString *)targetPath encryptKey:(NSString *)encryptKey
+{
+    const char* sqlQ = [[NSString stringWithFormat:@"ATTACH DATABASE '%@' AS plaintext KEY '';", targetPath] UTF8String];
+    
+    sqlite3 *encrypted_DB;
+    if (sqlite3_open([sourcePath UTF8String], &encrypted_DB) == SQLITE_OK) {
+        
+        
+        char* errmsg;
+        
+        sqlite3_exec(encrypted_DB, [[NSString stringWithFormat:@"PRAGMA key = '%@';", encryptKey] UTF8String], NULL, NULL, &errmsg);
+        
+        // Attach empty unencrypted database to encrypted database
+        sqlite3_exec(encrypted_DB, sqlQ, NULL, NULL, &errmsg);
+        
+        if (errmsg) {
+            NSLog(@"%@", [NSString stringWithUTF8String:errmsg]);
+            sqlite3_close(encrypted_DB);
+            return NO;
+        }
+        
+        // export database
+        sqlite3_exec(encrypted_DB, "SELECT sqlcipher_export('plaintext');", NULL, NULL, &errmsg);
+        if (errmsg) {
+            NSLog(@"%@", [NSString stringWithUTF8String:errmsg]);
+            sqlite3_close(encrypted_DB);
+            return NO;
+        }
+        
+        // Detach unencrypted database
+        sqlite3_exec(encrypted_DB, "DETACH DATABASE plaintext;", NULL, NULL, &errmsg);
+        if (errmsg) {
+            NSLog(@"%@", [NSString stringWithUTF8String:errmsg]);
+            sqlite3_close(encrypted_DB);
+            return NO;
+        }
+        
+        sqlite3_close(encrypted_DB);
+        
+        return YES;
+    }
+    else {
+        sqlite3_close(encrypted_DB);
+        NSAssert1(NO, @"Failed to open database with message '%s'.", sqlite3_errmsg(encrypted_DB));
+        
+        return NO;
+    }
+}
+
+/** change secretKey for sqlite database */
++ (BOOL)changeKey:(NSString *)dbPath originKey:(NSString *)originKey newKey:(NSString *)newKey
+{
+    sqlite3 *encrypted_DB;
+    if (sqlite3_open([dbPath UTF8String], &encrypted_DB) == SQLITE_OK) {
+        
+        sqlite3_exec(encrypted_DB, [[NSString stringWithFormat:@"PRAGMA key = '%@';", originKey] UTF8String], NULL, NULL, NULL);
+        
+        sqlite3_exec(encrypted_DB, [[NSString stringWithFormat:@"PRAGMA rekey = '%@';", newKey] UTF8String], NULL, NULL, NULL);
+        
+        sqlite3_close(encrypted_DB);
+        return YES;
+    }
+    else {
+        sqlite3_close(encrypted_DB);
+        NSAssert1(NO, @"Failed to open database with message '%s'.", sqlite3_errmsg(encrypted_DB));
+        
+        return NO;
+    }
+}
+
+@end
+#pragma mark --------- END FMEncryptHelper ---------
+
+
+
+@interface YYDBInfoModel : NSObject
+@property (nonatomic,strong)FMEncryptDatabaseQueue *queue;
+@property (nonatomic,copy) NSString *keyString;
+@end
+
+@implementation YYDBInfoModel
+
+@end
+
+@interface TestPlugin : CDVPlugin
+@property (nonatomic,strong)NSMutableDictionary<NSString *,YYDBInfoModel *> *dict;
+
+- (void)initDatabase:(CDVInvokedUrlCommand*)command;
+- (void)execsql:(CDVInvokedUrlCommand*)command;
+- (void)query:(CDVInvokedUrlCommand*)command;
+@end
+
+@implementation TestPlugin
+
+- (NSMutableDictionary<NSString *,YYDBInfoModel *> *)dict {
+    if (!_dict) {
+        _dict = [NSMutableDictionary dictionary];
+    }
+    return _dict;
+}
+
+
+
+- (FMEncryptDatabaseQueue *)loadDBWithName:(NSString *)dBName key:(NSString *)dBKey {
+    
+    YYDBInfoModel *dbInfo = nil;
+    if (![self.dict.allKeys containsObject:dBName]) {
+        dbInfo = [YYDBInfoModel new];
+        dbInfo.keyString = dBKey;
+        NSString *path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Documents/%@.db",dBName]];
+        dbInfo.queue = [FMEncryptDatabaseQueue databaseQueueWithPath:path encryptKey:dBKey];
+        NSLog(@"数据库路径%@",path);
+        
+        [self.dict setObject:dbInfo forKey:dBName];
+    } else {
+        if ([dbInfo.keyString isEqualToString:dBKey]) {
+            dbInfo = self.dict[dBName];
+        } else {
+            NSLog(@"数据库秘钥冲突！");
+        }
+    }
+    return dbInfo.queue;
+}
+
+
+- (void)initDatabase:(CDVInvokedUrlCommand*)command
+{
+    NSString *dBName = command.arguments[0];
+    NSString *dBKey = command.arguments[1];
+    
+    FMEncryptDatabaseQueue *queue = [self loadDBWithName:dBName key:dBKey];
+    
+    CDVPluginResult* pluginResult = nil;
+    if (queue) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"success"];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)execsql:(CDVInvokedUrlCommand*)command
+{
+    NSString *dBName = command.arguments[1];
+    NSString *sql = command.arguments[0];
+    
+    YYDBInfoModel *dbInfo = self.dict[dBName];
+    FMEncryptDatabaseQueue *queue = dbInfo.queue;
+    
+    __block BOOL flag = NO;
+    [queue inDatabase:^(FMDatabase *db) {
+        flag = [db executeUpdate:sql];
+    }];
+    
+    CDVPluginResult* pluginResult = nil;
+    if (flag) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"success"];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)query:(CDVInvokedUrlCommand*)command
+{
+    NSString *dBName = command.arguments[1];
+    NSString *sql = command.arguments[0];
+    
+    YYDBInfoModel *dbInfo = self.dict[dBName];
+    FMEncryptDatabaseQueue *queue = dbInfo.queue;
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
+        FMResultSet *rs = [db executeQuery:sql];
+        while ([rs next]) {
+            [arr addObject:[rs resultDictionary]];
+        }
+        CDVPluginResult* pluginResult = nil;
+        NSString *jsonString = [TestPlugin arrayToJSONString:arr];
+        if (jsonString) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:jsonString];
+        } else {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        }
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        [rs close];
+    }];
+    
+}
+
+
++ (NSString *)arrayToJSONString:(NSArray *)array
+{
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonString;
+}
+
+
+@end
+
+
+
+
+
+

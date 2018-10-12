@@ -1,0 +1,56 @@
+<!--
+  Generated template for the TaskContentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>量化内容</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="content-box">
+    <div class="title">
+      1.购置
+    </div>
+    <div class="desc">
+      购买长期使用的物品： 图书资料。为了扩大生产，这家工厂~了一批新设备
+    </div>
+    <div class="text-box">
+        <textarea placeholder="请输入评分备注..." style="resize: none;" [(ngModel)]="textareaValue" (ngModelChange)="textareaValueChange($event)" maxlength="200"></textarea>
+        <span>{{textareaValueLength}}/200</span>
+    </div>
+    <div class="desc-detail">
+      <p (click)="source()">
+        <span>评分说明</span>
+        <img src="../../../assets/imgs/wenhao.png" alt="">
+      </p>
+      <p>10</p>
+    </div>
+    <div class="creat">
+      <div class="creat-left">
+        <img src="../../../assets/imgs/add.png" alt="">
+        <p (click)="goDetail()">添加审核发现</p>
+      </div>
+      <div class="creat-right">
+        <p>保存</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal" *ngIf="showModal">
+    <div class="mask" (click)="close()"></div>
+    <div class="modal-box">
+      <h5>评分说明</h5>
+      <p>1.采用减分法，当考生出现错误操作时，依据评分细则，减去相应分数</p>
+      <p>2.不出现0.5分</p>
+      <p>3.对于不设减分点的操作，及时有错误，也不减分。</p>
+      <p>4.考生未进行试题中某项操作或未按项目的要求操作，要减去该项目的全部分数。</p>
+      <p>5.当考生发现取用的液体试剂超出规定的要求时，可倒出多余的部分，也可以领取，操作后符合规定取量不减分。</p>
+    </div>
+  </div>
+</ion-content>

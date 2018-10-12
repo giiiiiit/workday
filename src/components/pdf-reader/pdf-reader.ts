@@ -1,7 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
+import { File } from '@ionic-native/file'; 
+import { pdfModel } from './model'
 
 @Component({
   selector: 'pdf-reader',
@@ -9,20 +10,17 @@ import { File } from '@ionic-native/file';
 })
 /* 组件使用说明
   功能：pdf文档阅读器
-  入参说明：pdfSrc：字符串类型，文件地址，必填
+  入参option字段说明：
+           pdfSrc：字符串类型，文件地址，必填
            watermark：boolean型，是否加水印，默认不加，非必填
            watermarkType：字符串枚举类型，水印类型，watermark为true，则必填，text:文字类型水印，img：图片类型水印
            watermarkTextOrUrl：字符串类型，如果水印是文字，则为文字内容，如果水印类型是图片，则为图片Url，watermark为true，则必填
   返回值：无
-  用例： <pdf-reader [pdfSrc]="pdfSrc" [watermark]="true" 
-          [watermarkType]="'text'" [watermarkTextOrUrl]="'sunfield'"></pdf-reader>
+  用例： <pdf-reader [option]="pdfOption"></pdf-reader>
 */
 export class PDFReaderComponent {
 
-  @Input() pdfSrc: string; 
-  @Input() watermark: boolean;
-  @Input() watermarkType: string;
-  @Input() watermarkTextOrUrl: string;
+  @Input() option:pdfModel
 
   pdfSrc2 = "";
   keyword = "";
@@ -34,7 +32,7 @@ export class PDFReaderComponent {
  
   ngOnInit() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', this.pdfSrc, true);
+    xhr.open('GET', this.option.pdfSrc, true);
     xhr.responseType = 'blob';
 
     xhr.onload = (e: any) => {
@@ -56,15 +54,15 @@ export class PDFReaderComponent {
       caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: keyword
     });
   }
-  
+
   download() {
     const fileTransfer: FileTransferObject = this.transfer.create();
-    const url = encodeURI(this.pdfSrc);
+    const url = this.option.pdfSrc;
     fileTransfer.download(url, this.file.dataDirectory + 'file.pdf').then((entry) => {
+     alert('download complete: ' + entry.toURL());
     }, (error) => {
+      alert("@@@@"+error);
+      // handle error
     });
-
-
-
   }
 }

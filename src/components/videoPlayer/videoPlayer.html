@@ -1,9 +1,11 @@
 <!-- Generated template for the ComponentExampleComponent component -->
 <div class="videoContainer">
-<p class="waterMark" *ngIf="watermark==true && watermarkType =='text'">{{watermarkTextOrUrl}}</p>
-<img class="waterMark" src="{{watermarkTextOrUrl}}" alt="" *ngIf="watermark==true && watermarkType =='img'" style="width: 10%;">
-<video src="{{videoSrc}}" height=100%; height=100%; style=" height:100%; height:100%; object-fit:fill" controls="controls"
-  loop="loop" preload="auto"
-  playsinline webkit-playsinline poster="assets/imgs/videoPoster.png" >
-  </video> 
+<p class="waterMark" *ngIf="option.watermark==true && option.watermarkType =='text'">{{option.watermarkTextOrUrl}}</p>
+<img class="waterMark" src="{{option.watermarkTextOrUrl}}" alt="" *ngIf="option.watermark==true && option.watermarkType =='img'"
+  style="width: 10%;">
+<div style="height:15rem;">
+<video src="{{option.videoSrc}}" height=100%; height=100%; style=" height:100%; height:100%; object-fit:fill" controls="controls"
+loop="loop" preload="auto" playsinline webkit-playsinline
+poster="{{option.poster}}">
+    </video>
 </div>

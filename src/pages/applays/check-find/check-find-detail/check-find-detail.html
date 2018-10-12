@@ -1,0 +1,88 @@
+<ion-header>
+  <div class="title-part"> 
+    <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+    <ion-title>
+      审核发现详情
+    </ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="gray-bar"></div>
+  <div>
+    <div class="part-title">
+      <div class="red-sider"></div>
+      <div class="title">基本信息</div>
+      <div class="question">问题</div>
+    </div>
+    <div class="basic-detail">
+      <div class="detail-item-1">
+        被审单位<span class="gray-text right-text">{{activeData.name}}</span>
+      </div>
+      <div class="detail-item-1 ">
+        问题性质<span class="gray-text right-text">{{activeData.level.key}}</span>
+      </div>
+      <div class="detail-item-1">
+        限改日期<span class="gray-text right-text">{{activeData.lastDate}}</span>
+      </div>
+      <div class="detail-item-1 noborder">
+        问题描述
+        <div class="gray-text gray-paragraph margin-bottom-12">{{activeData.describe}}</div>
+      </div>
+      <div class="imgList">
+<img *ngFor="let item of activeData.imgAppendix" src="{{item}}" (click)="showBigImg(i)">
+      </div>
+      <videoPlayer-component [option]="videoOption"></videoPlayer-component>
+
+    </div>
+  </div>
+  <div class="gray-bar"></div>
+  <div>
+    <div class="part-title">
+      <div class="red-sider"></div>
+      <div class="title">问题归类</div>
+      <div class="question">问题</div>
+    </div>
+    <div class="basic-detail">
+      <div class="detail-item-1 noborder">
+        审核主题<span class="gray-text right-text">{{activeData.theme}}</span>
+      </div>
+      <div class="detail-item-1 noborder ">
+        审核项<span class="gray-text right-text">{{activeData.checkItem}}</span>
+      </div>
+      <div class="detail-item-1 noborder">
+        审核内容<span class="gray-text right-text">{{activeData.checkContent}}</span>
+      </div>
+      <div class="detail-item-1 noborder">
+        评分项
+        <div class="gray-text gray-paragraph right-paragraph">{{activeData.coreItem}}</div>
+      </div>
+     
+
+    </div>
+   </div>
+   <div class="gray-bar"></div>
+   <div>
+    <div class="part-title">
+      <div class="red-sider"></div>
+      <div class="title">问题列表</div>
+      <div class="question">问题</div>
+    </div>
+    <div class="question-item" *ngFor="let item of activeData.problemList">
+      <div class="imgContainer">
+        <img src="assets/imgs/problem.png" alt="">
+      </div>
+      <div class="gray-text">
+        {{item.content}}
+      </div>
+      <div class="name gray-text">
+        <div>{{item.author}}</div>
+      </div>
+    </div>
+  </div>
+
+
+</ion-content>
+

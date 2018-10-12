@@ -1,7 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
 declare var AMap:any;
-declare var window:any;
+/* 组件使用说明
+  功能：地图轨迹
+  入参说明： markers：数组类型，轨迹路线的标记点坐标，必填
+            markers = [[123.481002,41.69384],[123.476281,41.697877],[123.466797,41.69682]];
+  返回值：
+  用例： <component-map [markers]="markers"></component-map>
+        入口html引入  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.8&key=80d600c091a327ffff0c0ab5b0661f9d"></script>
+*/
 @Component({
   selector: 'component-map',
   templateUrl: 'component-map.html'

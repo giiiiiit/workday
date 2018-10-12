@@ -1,0 +1,93 @@
+page-detail-edit {
+    ion-header{
+        span{
+            float: right;
+            padding-right: 15px;
+            color: #fff;
+            line-height: 16px;
+        }
+    }
+    .edit{
+        margin-top: 8px;
+        height: 100%;
+        background-color: #fff;
+        .edit-box{
+            padding: 15px;
+            border-bottom: 1px solid $colorLine;
+            p{
+                font-weight: 600;
+                position: relative;
+                padding-left: 15px;
+                line-height: 20px;
+                font-size: 15px;
+                margin: 0;
+                &:before{
+                    content: '';
+                    height: 16px;
+                    width: 4px;
+                    position: absolute;
+                    top: 2px;
+                    left: 0;
+                    background-color: $colorTopic;
+                }
+            }
+            &:last-child{
+                border: 0;
+            }
+        }
+        .img-box{
+            .imgs{
+                margin-top: 18px;
+                display: flex;
+                justify-content: space-between;
+                img{
+                    width: 110px;
+                    height: 110px;
+                    object-fit: cover;
+                }
+                div{
+                    width: 110px;
+                    height: 110px;
+                    background-color: #f2f2f2;
+                    text-align: center;
+                    line-height: 130px;
+                    ion-icon{
+                        font-size: 40px;
+                        color: #a4a4a4;
+                    }
+                }
+            }
+        }
+        .title-box{
+            input{
+                border: 0;
+                margin-top: 10px;
+                font-size: 16px;
+                padding: 0 15px;
+                width: 100%;
+            }
+        }
+        .content-box{
+            .text-box{
+                position: relative;
+                background-color: #f6f6f6;
+                margin-top: 10px;
+                padding: 12px 12px 20px;
+                textarea{
+                    height: 250px;
+                    width: 100%;
+                    background-color: #f6f6f6;
+                    padding: 0;
+                    border: 0;
+                }
+                span{
+                    position: absolute;
+                    bottom: 6px;
+                    right: 15px;
+                    font-size: 12px;
+                    color: #868585;
+                }
+            }
+        }
+    }
+}

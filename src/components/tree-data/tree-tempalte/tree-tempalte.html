@@ -5,17 +5,17 @@
       <img src="assets/imgs/open-child@2x.png" alt="" (click)="switchChildren(child)" class="close-open-btn-child" *ngIf="!child.showChild && child.children != undefiend &&child.children.length > 0">
       <img src="assets/imgs/child-item@2x.png" alt="" class="close-open-btn-child" *ngIf="child.children == undefiend || child.children.length == 0 ">
       <div class="org-name-child">{{child.name}}</div>
-      <div class="view-detail-child"  (click)="viewOrg(child)"  *ngIf="btnText != undefined">{{btnText}}</div>
+      <div class="view-detail-child"  (click)="clickFn(child)" *ngIf="child.children == undefiend || child.children.length == 0 "  ><span *ngIf="btnText != undefined">{{btnText}}</span></div>
 
     </div>
-    <div class="panel-item-row2-child" [ngClass]="{'hideLine-child': !child.showChild || child.children == undefiend || child.children.length == 0}">
-      成员人数 ： {{child.peopleNum}}人
+    <div class="panel-item-row2-child"  >
+      {{child.bindText}}
     </div>
   </div>
 
   <div *ngIf="child.showChild " class="child-panel-child table-ceil">
       <div *ngFor="let item of child.children">
-        <tree-tempalte [child] = "item" [targetPage]="targetPage" [paramaName] = "paramaName"  [btnText]="btnText"></tree-tempalte>
+        <tree-tempalte [child]="item" [btnText]="btnText" [bindText]="bindText" [clickFn]="clickFn"></tree-tempalte>
       </div>
   </div>
 </div>

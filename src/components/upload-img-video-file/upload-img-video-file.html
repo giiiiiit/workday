@@ -1,5 +1,11 @@
-<div style="min-height:200px;height:200px">
-<div (click)="uploadImg()" *ngIf="type == 'img'">图片</div>
-<div (click)="uploadVideo()" *ngIf="type == 'video'">视频</div>
-<div (click)="uploadFile()" *ngIf="type == 'file'">文件</div>
+<div class="uploadBtn">
+  <div (click)="uploadImg()" *ngIf="option.type == 'img'">
+    <img src="{{option.imgUrl}}" alt="">
+  </div> 
+  <div (click)="uploadVideo()" *ngIf="option.type == 'video'">
+    <img src="{{option.imgUrl}}" alt="">
+  </div>
+  <div (click)="uploadFile()" *ngIf="option.type == 'file'">
+    <img src="{{option.imgUrl}}" alt="">
+  </div>
 </div>

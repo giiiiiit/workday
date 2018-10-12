@@ -1,0 +1,29 @@
+table-detail {
+   ion-header {
+     background-color: #c7000b;
+     padding: 5px 10px 5px 10px;
+
+     ion-title {
+       padding-right: 39px;
+     }
+   }
+    //title
+    .title-part {
+      display: flex;
+      flex-direction: row;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+
+.line {
+  padding: 0 1.25rem;
+  height: 4.16667rem;
+  border-bottom: 1px solid #e0e0e0;
+  line-height: 4.16667rem;
+  font-size: 1.33333rem;
+  color: #666666;
+}
+}

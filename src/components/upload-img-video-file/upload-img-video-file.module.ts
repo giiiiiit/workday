@@ -3,7 +3,8 @@ import  {IonicModule  }  from  "ionic-angular";
 import { FileChooser } from '@ionic-native/file-chooser';
 
 import { uploadIimgVideoFileComponent } from './upload-img-video-file';
-import { ImgService} from './ImgService'
+import { FileTransfer} from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 import { NoticeService } from './noticeService'
 import { Camera } from '@ionic-native/camera';
 @NgModule({
@@ -12,7 +13,7 @@ import { Camera } from '@ionic-native/camera';
     IonicModule
   ],
   providers: [
-    ImgService, NoticeService, FileChooser, Camera
+    NoticeService, FileChooser, Camera, FileTransfer, File
   ],
   exports: [uploadIimgVideoFileComponent]
 })

@@ -10,7 +10,7 @@ import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { Feedback } from '../base/Feedback';
-
+import { JPush } from '@jiguang-ionic/jpush';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { Feedback } from '../base/Feedback';
     Feedback,
     StatusBar,
     SplashScreen,
+    JPush,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: HAMMER_GESTURE_CONFIG,

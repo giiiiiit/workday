@@ -8,10 +8,12 @@ slides-component {
    .slide-zoom,
    .sildeContainer,
    img {
-   width:100%!important;
+   width:100.1%!important;
    display: block;
    clear: both;
    height: 100%!important;
    }
-
+.swiper-pagination-bullet-active{
+  background:#C7000B;
+}
 }

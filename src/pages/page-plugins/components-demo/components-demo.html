@@ -1,0 +1,171 @@
+<!--
+  Generated template for the PageExamplePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{componentTitle}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content (ionScroll)="contentScroll($event)">
+
+      
+    <!-- 图片懒加载 -->
+    <div *ngIf="componentTitle =='图片列表懒加载组件'" class="center">
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+      <div style="width:100%;height:200px;border:1px solid">
+        <img-lazyLoad [src]="'https://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKCLv96oQBCIDhiuBzII7-P7VzaCpDg'"></img-lazyLoad>
+      </div>
+    </div>
+
+
+
+    <!-- 文件上传 -->
+    <div *ngIf="componentTitle =='附件上传下载组件(附件压缩传输组件)'" >
+      <div style="padding: 20px;height:183px">
+        <div style="float:left;text-align:center;width: 50%;">
+          <span style="display:block;line-height: 40px">相机上传图片</span>
+          <upload-img-video-file [option]="uploadImgFromCamera" (afterUpload)="afterUpload($event)"></upload-img-video-file>
+        </div>
+        <div style="float:left;text-align:center;width:50%;">
+          <span style="display:block;line-height: 40px">相册上传图片</span>
+          <upload-img-video-file [option]="uploadImgFromLib" (afterUpload)="afterUpload($event)"></upload-img-video-file>
+        </div>
+      </div>
+      <div style="padding: 20px;height:183px">
+        <div style="float:left;text-align:center;width: 50%;">
+          <span style="display:block;line-height: 40px">上传视频</span>
+          <upload-img-video-file [option]="uploadVideo" (afterUpload)="afterUpload($event) "></upload-img-video-file>
+        </div>
+        <div style="float:left;text-align:center;width:50%;">
+          <span style="display:block;line-height: 40px">上传文件</span>
+          <upload-img-video-file [option]="uploadFile" (afterUpload)="afterUpload($event) "></upload-img-video-file>
+        </div>
+      </div>
+      <div style="padding: 20px;height:183px">
+        <div style="float:left;text-align:center;width: 50%;">
+          <span style="display:block;line-height: 40px">选择源上传图片</span>
+          <upload-img-video-file [option]="uploadImgFromCameraOrLib" (afterUpload)="afterUpload($event) "></upload-img-video-file>
+        </div>
+        <div style="float:left;text-align:center;width:50%;">
+          <span style="display:block;line-height: 40px">下载文件</span>
+          <download-img-video-file [option]="downImgOption" (afterDownload)="afterUpload($event) "></download-img-video-file>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <!-- 组织机构树 -->
+    <div *ngIf="componentTitle =='组织机构树'">
+    <tree-data [option]="treeDataOption"></tree-data>
+    </div>
+
+
+
+
+
+
+    
+    <div *ngIf="componentTitle =='相册图片查看器'" class="center">
+      <!-- 轮播图 -->
+      <div style="width:100%;height:240px">
+        <slides-component [option]="slidsOption"></slides-component>
+      </div>
+      <!-- 图片查看 -->
+      <div style="width:100%;height:100px">
+        <img-list-viewer-component [imgList]="imgList2"></img-list-viewer-component>
+      </div>
+    </div>
+
+
+
+    <!-- 视频播放 -->
+    <div *ngIf="componentTitle =='视频播放器'"  style="margin-top:50%">
+
+        <videoPlayer-component [option]="videoOPtion"></videoPlayer-component>
+    </div>
+
+
+    <div *ngIf="componentTitle =='图表组件(饼图)'" style="margin-top: 50%;">
+      <!-- 饼图 -->
+      <div >
+        <echart-tag [option]="optionPie" ></echart-tag>
+      </div>
+    </div>
+
+    <div *ngIf="componentTitle =='图表组件(柱状图)'" style="margin-top: 50%;">
+      <!-- 柱状图 -->
+
+      <div>
+        <echart-tag [option]="optionBar"></echart-tag>
+      </div>
+    </div>
+
+    <div *ngIf="componentTitle =='图表组件(折线图)'" style="margin-top: 50%;">
+      <!-- 折线图 -->
+      <div>
+        <echart-tag [option]="optionLine"></echart-tag>
+      </div>
+    </div>
+
+
+
+    <!-- pdf文件查看 -->
+    <div *ngIf="componentTitle =='文档阅读器'" style="margin:10px;">
+    <pdf-reader [option]="pdfOption"></pdf-reader>
+    </div>
+
+    <!-- 激光激光推送 -->
+    <div *ngIf="componentTitle =='激光推送'">
+    <p style="text-align:center">激光已经开启</p>
+    <push-jiguang (recieveNotice)="recieveNotice($event)" (openNotice)="openNotice($event)"></push-jiguang>
+    </div>
+
+
+<!-- 数据库加密 -->
+<div *ngIf="componentTitle =='数据库加密'">
+  <dabase-encryption></dabase-encryption>
+</div>
+
+</ion-content>
+
+
+

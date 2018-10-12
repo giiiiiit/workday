@@ -1,0 +1,27 @@
+<ion-header>
+  <div class="title-part"> 
+    <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+    <ion-title>
+      选择问题性质
+    </ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="gray-bar"></div>
+  <div class="problemContainer">
+    <div  *ngFor="let item of leveList; let i=index" >
+      <div class="problem" (click)="select(item)" [ngClass]="{'problem-active': activeLevel.value == item.value}">
+        {{i+1}}.{{item.key}}<span [ngClass]="{'problem-active-span': activeLevel.value == item.value}"></span>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+<ion-toolbar (click)="sure()">
+    <ion-title >确定</ion-title>
+  </ion-toolbar>
+</ion-footer>
+

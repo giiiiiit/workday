@@ -1,0 +1,107 @@
+<!-- <ion-header>
+   <div class="title-part">
+      <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+      <div class="search"  (click)="goSearch()">
+        <img src="assets/imgs/search.png" alt="">
+         <span style="line-height: 33px;">请输入材料标题</span>
+      </div>
+    </div>
+   <div class="tabs-container">
+      <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">管理规定</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">培训材料</span></div>
+   </div>
+  
+</ion-header> -->
+
+
+<ion-content>
+
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <div class="search" (click)="goSearch()">
+      <img src="assets/imgs/search.png" alt="">
+      <span style="line-height: 33px;">请输入材料标题</span>
+    </div>
+  </div>
+  <div class="tabs-container">
+    <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">管理规定</span></div>
+    <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">培训材料</span></div>
+  </div>
+  <div *ngIf="activeTab == '0'">
+    <div *ngIf="dataList.length ==0" class="nothing-container"> 
+      <div  class="nothing">
+        <img src="assets/imgs/nothing.png" alt="">
+      </div>
+      <p>暂无管理规定</p>
+    </div>
+    <div *ngFor="let item of dataList"  (click)="goDetail()">
+      <div class="flex-container" >
+          <div class="first-child">
+            <div class="red-sider"></div>
+            <div>
+              <div  class="title" style="margin-left:15px">
+                 {{item.title}}
+              </div>
+               
+            </div>
+          </div>
+          <div class="last-child">{{item.summary}}</div>
+          <div>
+              <div class="property ">发布单位：<span class="author">{{item.author}}</span></div>
+              <div class="property right-text"><span>{{item.lastTime}}</span></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="activeTab == '1'">
+    <div *ngIf="dataList.length ==0" class="nothing-container"> 
+      <div  class="nothing">
+        <img src="assets/imgs/nothing.png" alt="">
+      </div>
+      <p>暂无培训材料</p>
+    </div>
+    <div *ngFor="let item of dataList"  (click)="goDetail()">
+      <div class="flex-container" >
+          <div class="first-child">
+            <div class="red-sider"></div>
+            <div>
+              <div  class="title" style="margin-left:15px">
+                 {{item.title}}
+              </div>
+               
+            </div>
+          </div>
+          <div class="last-child">{{item.summary}}</div>
+          <div>
+              <div class="property ">发布单位：<span class="author">{{item.author}}</span></div>
+              <div class="property right-text"><span>{{item.lastTime}}</span></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+</ion-content>
+<!-- <ion-footer *ngIf="activeTab == '1'">
+ <div class="footer-btn footer-btn-1">
+   <div *ngIf="showAllSelect">
+     <img src="assets/imgs/noSelected.png"  (click)="selectAll(dataList,true)">
+     <span>全选</span>
+   </div>
+   <div  *ngIf="!showAllSelect">
+     <img src="assets/imgs/select.png"  (click)="selectAll(dataList,false)">
+     <span>全选</span>
+   </div>
+   
+ </div>
+ <div class="footer-btn footer-btn-2" [ngClass]="{'disableupload': dataList.length==0}">
+   <span>上传</span> ({{totalUpload}})
+  
+ </div>
+</ion-footer> -->

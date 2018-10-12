@@ -1,0 +1,25 @@
+<ion-header>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <ion-title>
+      个人信息
+    </ion-title>
+  </div>  
+</ion-header>
+
+
+<ion-content>
+  <div class="gray-bar"></div>
+  <div class="list-item">
+    <span class="text-18px" style=" line-height: 8rem;">头像</span>
+    <upload-img-video-file [option]="uploadImgFromCameraOrLib" (afterUpload)="afterUpload($event) "></upload-img-video-file>
+  </div>
+  <div class="list-item" style="border:0px">
+    <span  class="text-18px">姓名</span>
+    <span class="name text-18px">张三</span>
+  </div>
+  
+  
+</ion-content>

@@ -1,0 +1,17 @@
+page-page-index {
+    .top-tab{
+        background-color: $colorDeep;
+        display: flex;
+        justify-content: space-around;
+        // border-top: 1px solid $colorLine;
+        p{
+            color: #fff;
+            border-bottom: 2px solid transparent;
+            padding: 5px 0;
+            margin: 6px 0;
+            &.active{
+                border-bottom: 2px solid #fff;
+            }
+        }
+    }
+}

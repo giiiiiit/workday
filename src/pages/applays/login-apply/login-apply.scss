@@ -1,0 +1,98 @@
+page-login-apply {
+    .item-block{
+        justify-content: flex-end;
+    }
+    .checkbox-ios .checkbox-icon {
+        border-radius: 0;
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #cb1821;
+        background-color: #fff;
+    }
+    .checkbox-ios-danger .checkbox-checked {
+        border-color: #cb1821;
+        background-color: #cb1821;
+    }
+    .item.item-ios .checkbox-ios {
+        position: static;
+        display: block;
+        margin: 9px 11px 8px 2px;
+    }
+    .item-ios.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: 0px solid #c8c7cc;
+        font-size: 14px;
+        flex: none !important;
+    }
+    .label-ios {
+        margin: 11px 0px 11px 0;
+    }
+    .checkbox-ios .checkbox-checked .checkbox-inner {
+        left: 6px;
+        top: 3px;
+    }
+    .login-box{
+        .login-bg{
+            img{
+                display: block;
+            }
+        }
+        .login{
+            background-color: #fff;
+            width: 92%;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            margin-left: -46%;
+            box-shadow: 0px 0px 10px #d2d2d2;
+            .login-form{
+                padding: 40px 25px;
+                .input-box{
+                    p{
+                        margin: 0;
+                        margin-bottom: 2px;
+                        font-size: 12px;
+                    }
+                    input{
+                        width: 100%;
+                        border: 0;
+                        padding: 8px;
+                        border-radius: 0;
+                        border-bottom: 1px solid #cb1821;
+                    }
+                    &:first-child{
+                        margin-bottom: 26px;
+                    }
+                }
+            }
+            .login-button{
+                padding: 0 25px;
+                margin-bottom: 30px;
+                button{
+                    width: 100%;
+                    background-color: transparent;
+                    border: 1px solid #cb1821;
+                    color: #cb1821;
+                    border-radius: 3px;
+                    padding: 14px 0;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .login-text{
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        p{
+            font-size: rem(14);
+            color: #707070;
+            margin: 5px 0;
+            text-align: center;
+        }
+    }
+    
+}

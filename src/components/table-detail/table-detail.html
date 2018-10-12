@@ -1,0 +1,17 @@
+
+
+<ion-header>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <ion-title>
+      表详情
+    </ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="line">表名：{{tableName}}</div>
+  <div class="line" *ngFor="let item of dataList">{{item.name}}-{{item.tel}}</div>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <ion-title>
+      系统设置
+    </ion-title>
+  </div>  
+</ion-header>
+
+
+<ion-content>
+  <div class="gray-bar"></div>
+  <div class="list-item" >
+    <span  class="text-18px">当前版本</span>
+    <span class="name text-18px">v3.6.1</span>
+  </div>
+  <div class="list-item" style="border:0px" (click)="showConfirm()">
+    <span  class="text-18px">清理缓存</span>
+    <span class="name text-18px">2.5M</span>
+  </div>
+  
+  
+</ion-content>
+<ion-footer>
+  <div class="logout">退出登录</div>
+</ion-footer>

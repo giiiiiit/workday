@@ -1,0 +1,87 @@
+<ion-header>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <ion-title>
+      我的收藏
+    </ion-title>
+  </div>
+  <div class="tabs-container">
+      <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">法规标准</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">材料库</span></div>
+   </div>
+   
+</ion-header>
+
+
+<ion-content>
+  
+  <div *ngIf="activeTab == '0'">
+    <div *ngIf="pdfList.length ==0" class="nothing-container"> 
+      <div  class="nothing">
+        <img src="assets/imgs/nothing.png" alt="">
+      </div>
+      <p>暂无我的收藏</p>
+    </div>
+    <div *ngFor="let item of pdfList" style="display: flex;" >
+      <div class="flex-container" >
+          <div class="first-child">
+            <img src="assets/imgs/pdf@3x.png" alt="" sizes="" srcset="">
+            <div class="title">
+                {{item.title}}
+            </div>
+          </div>
+          <div class="last-child">法规标号：<span style="color:red">GB1111-1</span><span style="float:right">2018-08-08</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab == '1'">
+    <div *ngIf="dataList.length ==0" class="nothing-container"> 
+      <div  class="nothing">
+        <img src="assets/imgs/nothing.png" alt="">
+      </div>
+      <p>暂无我的收藏</p>
+    </div>
+    <div *ngFor="let item of dataList"  (click)="goDetail()">
+      <div class="flex-container" >
+          <div class="first-child">
+            <div class="red-sider"></div>
+            <div>
+              <div  class="title" style="margin-left:15px">
+                 {{item.title}}
+              </div>
+               
+            </div>
+          </div>
+          <div class="last-child">{{item.summary}}</div>
+          <div>
+              <div class="property ">发布单位：<span class="author">{{item.author}}</span></div>
+              <div class="property right-text"><span>{{item.lastTime}}</span></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+</ion-content>
+<!-- <ion-footer *ngIf="activeTab == '1'">
+ <div class="footer-btn footer-btn-1">
+   <div *ngIf="showAllSelect">
+     <img src="assets/imgs/noSelected.png"  (click)="selectAll(dataList,true)">
+     <span>全选</span>
+   </div>
+   <div  *ngIf="!showAllSelect">
+     <img src="assets/imgs/select.png"  (click)="selectAll(dataList,false)">
+     <span>全选</span>
+   </div>
+   
+ </div>
+ <div class="footer-btn footer-btn-2" [ngClass]="{'disableupload': dataList.length==0}">
+   <span>上传</span> ({{totalUpload}})
+  
+ </div>
+</ion-footer> -->

@@ -1,0 +1,31 @@
+page-detail {
+    .detail{
+        background-color: #fff;
+        height: 100%;
+        h5{
+            margin: 0;
+            padding: 15px;
+            color: $colorTitle;
+            line-height: 24px;
+        }
+        .line{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 15px;
+            border-top: 1px solid $colorLine;
+            border-bottom: 1px solid $colorLine;
+            p{
+                margin: 0;
+                color: #707070;
+            }
+            span{
+                color: $colorTitle;
+            }
+        }
+        .content{
+            padding: 15px;
+            background-color: #fff;
+        }
+    }
+}

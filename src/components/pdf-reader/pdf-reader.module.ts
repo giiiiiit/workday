@@ -4,7 +4,7 @@ import { IonicModule } from "ionic-angular";
 import { PDFReaderComponent } from './pdf-reader';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 
 @NgModule({

@@ -1,0 +1,61 @@
+<!--
+  Generated template for the DetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+   <div class="title-part">
+      <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+      <div class="search-input">
+         <ion-searchbar   mode="ios"  placeholder="请输入关键字">
+        </ion-searchbar>
+      </div>
+      <div>
+        <img src="assets/imgs/add@3x.png" alt="" sizes="" srcset="">
+      </div>
+    </div>
+   <div class="tabs-container">
+      <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == 'pdf'}" (click)="switchTab('pdf')">PDF</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == 'img'}" (click)="switchTab('img')">图片</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == 'video'}" (click)="switchTab('video')">视频</span></div>
+   </div>
+  
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="activeTab == 'pdf'">
+    <div *ngFor="let item of pdfList" style="display: flex;" >
+      <div class="flex-container" >
+          <div class="first-child">
+            <img src="assets/imgs/pdf@3x.png" alt="" sizes="" srcset="">
+            <div class="title">
+                {{item.title}}
+            </div>
+          </div>
+          <div class="last-child">法规标号：<span style="color:red">GB1111-1</span><span style="float:right">2018-08-08</span></div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="activeTab == 'img'">
+    <div class="flex-container-img">
+      <div class="flex-item-img" *ngFor="let item of imgList">
+        <img src="{{item}}" alt="">
+      </div>
+    </div>
+    <!-- <div *ngFor="let item of imgList" style="display: flex;">
+      
+    </div> -->
+  </div>
+  <div *ngIf="activeTab == 'video'">
+   
+    <div *ngFor="let item of videoList">
+      <videoPlayer-component [option] = "item"></videoPlayer-component>
+    </div>
+  </div>
+  
+  
+</ion-content>

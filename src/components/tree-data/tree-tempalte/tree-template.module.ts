@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from "ionic-angular";
 import { treeTemplateComponent} from './tree-tempalte'
 
-
 @NgModule({
   declarations: [treeTemplateComponent],
   imports: [
@@ -12,7 +11,6 @@ import { treeTemplateComponent} from './tree-tempalte'
     CommonModule,
     IonicModule
   ],
-    
   exports: [
     treeTemplateComponent
   ]

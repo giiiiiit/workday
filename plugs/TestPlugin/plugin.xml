@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+    <plugin id="com.plugin.testPlugin" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>TestPlugin</name>
+
+    <engines>
+        <engine name="cordova-android" version=">=3.6.0" />
+    </engines>
+    <js-module name="TestPlugin" src="www/TestPlugin.js">
+        <clobbers target="cordova.plugins.TestPlugin" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="TestPlugin">
+                <param name="android-package" value="com.plugin.testPlugin.TestPlugin" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+        <source-file src="src/android/TestPlugin.java" target-dir="src/com/plugin/testPlugin/TestPlugin" />
+        <source-file src="src/android/DatabaseHelper.java" target-dir="src/com/plugin/testPlugin/TestPlugin" />
+        <source-file src="src/android/CipherPlugin.java" target-dir="src/com/plugin/testPlugin/TestPlugin" />
+        <framework src="net.zetetic:android-database-sqlcipher:3.5.9"/>
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="TestPlugin">
+                <param name="ios-package" value="TestPlugin" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/TestPlugin.m" />
+         <!-- SQLCipher source distribution and Security.framework dependency for iOS: -->
+         <!-- <header-file src="src/ios/common/FMEncryptDatabase.m" />
+        <header-file src="src/ios/common/FMEncryptDatabase.h" />
+        <header-file src="src/ios/common/FMEncryptDatabaseQueue.m" />
+        <header-file src="src/ios/common/FMEncryptDatabaseQueue.h" />
+        <header-file src="src/ios/common/FMEncryptHelper.m" />
+        <header-file src="src/ios/common/FMEncryptHelper.h" /> -->
+
+
+        <!-- <header-file src="src/common/FMDatabase.h" />
+        <header-file src="src/common/FMDB/FMDatabase.m" />
+        <header-file src="src/common/FMDB/FMDatabaseAdditions.h" />
+        <header-file src="src/common/FMDB/FMDatabaseAdditions.m" />
+        <header-file src="src/common/FMDB/FMDatabasePool.h" />
+        <header-file src="src/common/FMDB/FMDatabasePool.m" />
+        <header-file src="src/common/FMDB/FMDatabaseQueue.h" />
+        <header-file src="src/common/FMDB/FMDatabaseQueue.m" />
+        <header-file src="src/common/FMDB/FMDB.h" />
+        <header-file src="src/common/FMDB/FMResultSet.h" />
+        <header-file src="src/common/FMDB/FMResultSet.m" />
+
+
+        <header-file src="src/common/Service/ColumnPropertyMappingDelegate.h" />
+        <header-file src="src/common/Service/DbService.h" />
+        <header-file src="src/common/Service/DbService.m" />
+        <header-file src="src/common/Service/FMEncryptDatabase.h" />
+        <header-file src="src/common/Service/FMEncryptDatabase.m" />
+        <header-file src="src/common/Service/FMEncryptDatabaseQueue.m" />
+        <header-file src="src/common/Service/FMEncryptDatabaseQueue.h" />
+        <header-file src="src/common/Service/FMEncryptHelper.h" />
+        <header-file src="src/common/Service/FMEncryptHelper.m" /> -->
+        
+   
+    </platform>
+</plugin>

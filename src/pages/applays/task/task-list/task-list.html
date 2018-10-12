@@ -1,0 +1,124 @@
+<!-- <ion-header>
+   <div class="title-part">
+      <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+      <div class="search-input">
+         <ion-searchbar   mode="ios"  placeholder="请输入关键字">
+        </ion-searchbar>
+      </div>
+      <div (click)="add()">
+        <img src="assets/imgs/add@3x.png" alt="" sizes="" srcset="">
+      </div>
+    </div>
+   <div class="tabs-container">
+      <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">我的发现</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">离线上传</span></div>
+   </div>
+  
+</ion-header> -->
+
+
+<ion-content>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+    <div style="color: #fff;margin: 0 auto;padding-right: 39px;font-size: 16px;">统计详情</div>
+  </div>
+  <div class="tabs-container">
+    <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">我的发现</span></div>
+    <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">离线上传</span></div>
+  </div>
+
+  <div *ngIf="activeTab == '0'">
+    <div *ngIf="dataList.length ==0" class="nothing-container"> 
+      <div  class="nothing">
+        <img src="assets/imgs/nothing.png" alt="">
+      </div>
+      <p>暂无我的发现</p>
+    </div>
+    <div *ngFor="let item of dataList"  (click)="goDetail()">
+      <div class="flex-container" >
+          <div class="first-child">
+            <div class="red-sider"></div>
+            <div>
+              <div  class="title" style="margin-left:15px">
+                 {{item.title}}
+              </div>
+              <span class="question">{{item.lastTime}}</span>
+            </div>
+          </div>
+          <!-- <div class="last-child">{{item.summary}}</div> -->
+          <div>
+              <div class="property ">已审核内容数：<span class="level">{{item.num}}/{{item.totalnum}}</span></div>
+              <div class="property ">发现问题数：<span>{{item.findnum}}</span></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="activeTab == '1'">
+    <div *ngIf="dataList.length ==0" class="nothing-container"> 
+      <div  class="nothing">
+        <img src="assets/imgs/nothing.png" alt="">
+      </div>
+      <p>暂无离线数据</p>
+    </div>
+    <div *ngFor="let item of dataList2"  >
+      <!-- <div class="flex-container newcontainer" > -->
+          <!-- <div class="first-child">
+            <img src="assets/imgs/noSelected.png"  *ngIf="!item.select" (click)="select(item)">
+            <img src="assets/imgs/select.png"  *ngIf="item.select"  (click)="select(item)">
+            <div>
+              <div class="title">
+                  {{item.title}}
+                  <span>8</span>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="last-child">{{item.summary}}</div> -->
+          <!-- <div>
+              <div class="property ">已审核内容数：<span class="level">{{item.num}}/{{item.totalnum}}</span></div>
+              <div class="property ">发现问题数：<span>{{item.findnum}}</span></div>
+          </div> -->
+      <!-- </div> -->
+      <div class="newcontainer">
+        <div class="left-box">
+            <img src="assets/imgs/noSelected.png"  *ngIf="!item.select" (click)="select(item)">
+            <img src="assets/imgs/select.png"  *ngIf="item.select"  (click)="select(item)">
+        </div>
+        <div class="right-box">
+          <div class="row-one">
+            <p>{{item.title}}</p>
+            <span>{{item.num}}</span>
+          </div>
+          <div class="row-two">
+            <h5>{{item.content}}</h5>
+            <p>{{item.summary}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+</ion-content>
+<ion-footer *ngIf="activeTab == '1'">
+ <div class="footer-btn footer-btn-1">
+   <div *ngIf="showAllSelect">
+     <img src="assets/imgs/noSelected.png"  (click)="selectAll(dataList,true)">
+     <span>全选</span>
+   </div>
+   <div  *ngIf="!showAllSelect">
+     <img src="assets/imgs/select.png"  (click)="selectAll(dataList,false)">
+     <span>全选</span>
+   </div>
+   
+ </div>
+ <div class="footer-btn footer-btn-2" [ngClass]="{'disableupload': dataList.length==0}">
+   <span>上传</span> ({{totalUpload}})
+  
+ </div>
+</ion-footer>

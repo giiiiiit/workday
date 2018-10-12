@@ -1,0 +1,50 @@
+library-detail {
+   ion-header {
+     background-color: #c7000b;
+     padding: 5px 10px 5px 10px;
+
+     ion-title {
+      //  padding-right: 39px;
+     }
+   }
+
+   //title
+   .title-part {
+     display: flex;
+     flex-direction: row;
+
+     img {
+       width: 3rem;
+       height: 3rem;
+     }
+   }
+    .detail{
+        background-color: #fff;
+        height: 100%;
+        h5{
+            margin: 0;
+            padding: 15px;
+            color: $colorTitle;
+            line-height: 24px;
+        }
+        .line{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 15px;
+            border-top: 1px solid $colorLine;
+            border-bottom: 1px solid $colorLine;
+            p{
+                margin: 0;
+                color: #707070;
+            }
+            span{
+                color: $colorTitle;
+            }
+        }
+        .content{
+            padding: 15px;
+            background-color: #fff;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<ion-header>
+  <div>
+    <div (click)="back()" class="backBtn">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+    <div top class="search-part">
+      <ion-searchbar [(ngModel)]="searchText" (ionInput)="getCurrentItems($event)" (ionClear)="onClearFilter($event)"
+        placeholder="搜索"></ion-searchbar>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content no-bounce>
+  
+   <div *ngIf="!isFilter">
+    <ion-list no-lines="true">
+      <ion-item *ngFor="let item of data" class="search-item" (click)="goDetail(item);">
+        <ion-label [innerHTML]="item.title"></ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="isFilter">
+    <ion-list no-lines="true">
+      <ion-item *ngFor="let item of searchItems" class="search-item" (click)="goDetail(item);">
+        <ion-label [innerHTML]="item.title | keyword:searchText"></ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -3,22 +3,32 @@ import { NavController, NavParams } from 'ionic-angular';
 import { signpadOptionsValues } from './signpadOptionsValues.model';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
-/*
-  Generated class for the SampleSignaturepad page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
+/* 组件使用说明
+  功能：签名手写板
+  入参说明： signpadOptions：对象类型，手写板配置项，必填
+            signpadOptionsValue:object = {
+              tabOptions: {
+                tabStatus: true, // 启动自定义画板，默认为true；PS：penColor和maxWidth配置无效
+                arrayNumbers: [8.0, 6.0, 4.0, 2.0, 1.0], //画笔粗细 number类型 float
+                arrayColors: ['#333', '#fff111', '#3366cc', '#666', '#ff9900'] //画笔颜色 string
+              },
+              minWidth: 1.0, // 笔锋 float
+              maxWidth: 5.0, // 粗细 float
+              throttle: 20, // default 16 每秒绘制的次数,越细腻 int
+              canvasHeight: 325,
+              penColor: '#eee', // 画笔颜色
+              backgroundColor: '#fff' // 背景颜色
+            }
+  返回值：signImgUrl()  返回图片base64编码
+  用例： <page-sample-signaturepad [signpadOptions]='signpadOptionsValue' (signImgUrl)="onsignImgUrl($event)"></page-sample-signaturepad>
 */
-// @IonicPage()
 @Component({
   selector: 'page-sample-signaturepad',
   templateUrl: 'sample-signaturepad.html'
 })
 export class SampleSignaturepad {
-
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
   @ViewChild('contentEl') contentEl: ElementRef;
-
   imageData: String;
   arrayNumbers = [];
   arrayColors = [];
@@ -29,7 +39,6 @@ export class SampleSignaturepad {
   statusLeft = 0;
   statusRight = 0;
   public _signpadOptions: object;
-
   @Input()
   set signpadOptions(signpadOptionsValue: signpadOptionsValues){
     this._signpadOptions = signpadOptionsValue;
@@ -61,19 +70,14 @@ export class SampleSignaturepad {
       
     }
   }
-
   get signaturePadOptions(): Object {
     return this._signpadOptions;
   };
   @Output() signImgUrl = new EventEmitter<String>();
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
   drawStart() {
-    // console.log('begin drawing');
   }
-
   choosetab(type) {
     if (type === 1) {
       this.conditionRight = false;
@@ -91,7 +95,6 @@ export class SampleSignaturepad {
       }
     }
   }
-
   choosePen(type, index, item) {
     if (type === 1) {
       this.signaturePad.set('minWidth', item);
@@ -103,16 +106,13 @@ export class SampleSignaturepad {
       this.conditionRight = false;
     }
   }
-
   drawComplete() {
     this.isEmpty = true;
   }
-
   save() {
     this.imageData = this.signaturePad.toDataURL();
     this.signImgUrl.emit(this.imageData);
   }
-
   empty() {
     this.signaturePad.clear();
   }

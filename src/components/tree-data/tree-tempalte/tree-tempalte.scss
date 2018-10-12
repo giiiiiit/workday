@@ -8,14 +8,14 @@ tree-tempalte {
   min-width: 270px;
   display: inline-block;
   width: 100%;
-  border-left: 3px dashed #e0e0e0;
+  // border-left: 3px dashed #e0e0e0;
   .hideLine-child {
-    border-left: 3px dashed #ffffff !important;
+    // border-left: 3px dashed #ffffff !important;
   }
   .panel-item-child {
     padding: 15px 0 0 15px;
     width: 100%;
-     border-top: 1px solid#e0e0e0;
+    //  border-top: 1px solid#e0e0e0;
     min-width:270px;
     display: inline-block;
   }
@@ -24,7 +24,7 @@ tree-tempalte {
   }
 
   .panel-item-row2-child {
-    border-left: 3px dashed #e0e0e0;
+    // border-left: 3px dashed #e0e0e0;
     margin-left: 18px;
     padding: 10px 10px 10px 20px;
     margin-bottom: 2px;

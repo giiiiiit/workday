@@ -1,7 +1,9 @@
 <!-- Generated template for the ComponentExampleComponent component -->
 <div style=" min-height: 450px!important;position: relative">
-  <p class="waterMark" *ngIf="watermark==true && watermarkType =='text'" [hidden]="loader">{{watermarkTextOrUrl}}</p>
-  <img class="waterMark" src="{{watermarkTextOrUrl}}" alt="" *ngIf="watermark==true && watermarkType =='img'" style="width: 10%;" [hidden]="loader">
+<p class="waterMark" *ngIf="option.watermark==true && option.watermarkType =='text'" [hidden]="loader">{{option.watermarkTextOrUrl}}</p>
+<img class="waterMark" src="{{option.watermarkTextOrUrl}}" alt="" *ngIf="option.watermark==true && option.watermarkType =='img'"
+  style="width: 10%;"
+  [hidden]="loader">
   <div class="spinner" [hidden]="!loader" style="position: absolute;left: 48%">
     <div class="spinner-container container1">
       <div class="circle1"></div>
@@ -22,7 +24,7 @@
       <div class="circle4"></div>
     </div>
   </div>
-  <div style="position:relative">
+  <div style="position:relative;padding:10px 20px 10px 30px;">
     <ion-searchbar mode="ios" placeholder="请输入关键字"   [(ngModel)]="keyword" (ionChange)="search(keyword)" >
     </ion-searchbar>
     <div class="download-btn"  (click)="download()">
@@ -30,7 +32,7 @@
     </div>
 
   </div>
-  <pdf-viewer [src]="pdfSrc2" [render-text]="true" style="display: block;max-height:450px;overflow-y: scroll" [autoresize]="true" [show-all]="true" [page]="1" [original-size]="false" (after-load-complete)="complete($event)" >
+  <pdf-viewer [src]="option.pdfSrc" [render-text]="true" style="display: block;max-height:450px;overflow-y: scroll" [autoresize]="true" [show-all]="true" [page]="1" [original-size]="false" (after-load-complete)="complete($event)" >
   </pdf-viewer>
 </div>
 

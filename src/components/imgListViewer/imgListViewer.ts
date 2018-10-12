@@ -26,7 +26,6 @@ export class imgListViewerComponent {
 
   showBigImg(index){  
     let shouList = [];  
-    console.log("this.imgList", this.imgList);
     this.imgList.forEach(function (item) {
       if(item.urlBig !=undefined){
         shouList.push({ url: item.urlBig});

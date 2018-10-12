@@ -1,0 +1,58 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <div class="title-part"> 
+    <div (click)="open()">
+      <img src="assets/imgs/menus.png" alt="" sizes="" srcset="">
+    </div>
+    <ion-title>
+      移动审核助手
+    </ion-title>
+  </div>
+</ion-header>
+<ion-content>
+  <div class="background">
+    <div class="side-img">
+      <slides-component [option]="slidsOption" style="width:100%;height:221px"></slides-component>
+      <div class="tab-nav">
+        <div class="tab" *ngFor="let item of nav;" (click)="chosetab(item.path)">
+          <div class="nav-box" >
+            <img src="{{item.icon}}" alt="">
+            <p>{{item.title}}</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</ion-content>
+<div class="side-menu" [ngClass]="{'side-menu-active': showMenu, 'side-menu-out': !showMenu}">
+  <div class="mash" (click)="close()" [hidden]="showMask"></div>
+  <div class="side-menu-box" [hidden]="showMask">
+    <div class="head-box">
+      <img class="bgimg" src="../../assets/imgs/bg.png" alt="">
+      <div class="logo-box">
+        <img src="../../assets/imgs/avatar.png" alt="" (click)="goMyDataPage()">
+        <p>用户昵称</p>
+      </div>
+    </div>
+    <div class="list-box">
+      <div class="item" (click)="goCollectListPage()">
+        <ion-icon  name="ios-star-outline"></ion-icon>
+        <p>我的收藏</p>
+      </div>
+      <div class="item" (click)="resetPassword()">
+        <ion-icon  name="ios-unlock-outline" ></ion-icon>
+        <p>修改密码</p>
+      </div>
+      <div class="item"  (click)="goSettingPage()">
+        <ion-icon name="ios-settings-outline"></ion-icon>
+        <p>系统设置</p>
+      </div>
+    </div>
+  </div>
+</div>

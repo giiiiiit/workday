@@ -48,7 +48,7 @@ select-component {
                 -webkit-animation: num .3s ease-in-out 0s 1 alternate forwards;
                 animation: num .3s ease-in-out 0s 1 alternate forwards
             }
-            .mash{
+            .mask{
                 opacity: 1;
                 -webkit-transition: all .3s;
                 -o-transition: all .3s;
@@ -60,7 +60,7 @@ select-component {
                 -webkit-animation: num-move .3s ease-in-out 0s 1 alternate forwards;
                 animation: num-move .3s ease-in-out 0s 1 alternate forwards
             }
-            .mash{
+            .mask{
                 opacity: 0;
                 -webkit-transition: all .3s;
                 -o-transition: all .3s;
@@ -71,7 +71,7 @@ select-component {
             position: fixed;
             width: 100%;
             height: 100%;
-            top: 83px;
+            top: 85px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -136,7 +136,7 @@ select-component {
             width: 100%;
             background-color: #fff;
             position: absolute;
-            top: 59px;
+            top: 56px;
             left: 0;
             z-index: 12;
             ul{

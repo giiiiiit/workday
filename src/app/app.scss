@@ -14,6 +14,38 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+// $vm_fontsize: 37.5; // 是$vm_design 值得十分之一
+// $vm_design: 375; // 根据需要替换成设计稿的值,比如设计稿给你的宽度是360px,
+// html {
+//     font-size: ($vm_fontsize / $vm_design) * 100vw; // 同时，通过Media Queries 限制根元素最大最小值
+//     @media screen and (max-width: 320px) {
+//       font-size: 32px;
+//     }
+//     @media screen and (min-width: 540px) {
+//       font-size: 54px;
+//     }
+// }
+
+//font-size class
+  .text-18px {
+    font-size: rem(18);
+  }
+
+  .text-16px {
+    font-size: rem(16)
+  }
+
+  .text-14px {
+    font-size: rem(14);
+  }
+
+  .text-12px {
+    font-size: rem(12);
+  }
+
+  .text-10px {
+    font-size: rem(10);
+  }
 .header-ios, .footer-ios {
     .toolbar-background-ios{
         border-style: solid;
@@ -22,7 +54,7 @@
     }
     .toolbar-title-ios {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: rem(18);
         font-weight: 500;
         color: #fff;
         pointer-events: auto;
@@ -31,9 +63,6 @@
 .content-ios {
     color: #000;
     background-color: #faf9f2;
-}
-ion-content {
-//   background-color: #ffffff !important;
 }
 $colorDeep: #C7000B;
 $colorTopic: #ff4d56;

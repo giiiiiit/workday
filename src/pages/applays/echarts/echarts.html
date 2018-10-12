@@ -1,0 +1,50 @@
+<!-- <ion-header>
+   <div class="title-part">
+      <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+      
+      <div style="color: #fff;margin: 0 auto;">统计详情</div>
+     
+    </div>
+   <div class="tabs-container">
+      <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">审核期次</span></div>
+      <div  class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">审核主题</span></div>
+   </div>
+</ion-header> -->
+
+
+<ion-content>
+  <div class="title-part">
+    <div (click)="back()">
+      <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+    </div>
+
+    <div style="color: #fff;margin: 0 auto;padding-right: 39px;font-size: 16px;">统计详情</div>
+    <!-- <div class="search-input">
+          
+        </div> -->
+  </div>
+  <div class="tabs-container">
+    <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '0'}" (click)="switchTab('0')">审核期次</span></div>
+    <div class="tab"><span [ngClass]="{'active-tab-span': activeTab == '1'}" (click)="switchTab('1')">审核主题</span></div>
+  </div>
+
+
+  <div *ngIf="activeTab == '0'">
+      <div style="margin-top: 30px;">
+          <echart-tag [option]="optionLine"></echart-tag>
+      </div>
+      <div style="margin-top: 30px;">
+        <echart-tag [option]="optionLine2"></echart-tag>
+      </div>
+  </div>
+  <div *ngIf="activeTab == '1'">
+      <div style="margin-top: 30px;">
+        <echart-tag [option]="optionLine3"></echart-tag>
+      </div>
+      <div style="margin-top: 30px;">
+        <echart-tag [option]="optionLine4"></echart-tag>
+      </div>
+  </div>
+</ion-content>

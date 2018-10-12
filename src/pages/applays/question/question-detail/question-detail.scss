@@ -1,0 +1,82 @@
+page-question-detail {
+    .list{
+        margin-top: 8px;
+        background-color: #fff;
+        &:last-child{
+            margin-bottom: 8px;
+        }
+        .list-title{
+            font-size: rem(18);
+            line-height: rem(18);
+            position: relative;
+            padding: 10px 0 10px 15px;
+            border-bottom: 1px solid $colorLine;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &::before{
+                content: '';
+                position: absolute;
+                top: rem(14);
+                left: rem(14);
+                width: 3px;
+                height: rem(18);
+                background-color: $colorTopic;
+            }
+            &.desc::before{
+                top: rem(10);
+            }
+            p{
+                margin: 0;
+                padding-left: 8px;
+            }
+            span{
+                display: inline-block;
+                font-size: rem(14);
+                color: #fff;
+                padding: 5px 15px;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                &.info{
+                    background-color: #40a6ff;
+                }
+                &.danger{
+                    background-color: $colorTopic;
+                }
+            }
+        }
+        .list-line{
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $colorLine;
+            p{
+                margin: 0;
+                flex: none;
+                margin-right: 15px;
+            }
+            span{
+                color: #707070;
+                flex: unset;
+            }
+        }
+        .list-content{
+            padding: 10px 15px;
+            color: #707070;
+            font-size: rem(16);
+            line-height: rem(20);
+            p{
+                margin-top: 0;
+                margin-bottom: 8px;
+                color: #000;
+            }
+        }
+        .list-foot{
+            padding: 10px 15px;
+            font-size: rem(16);
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

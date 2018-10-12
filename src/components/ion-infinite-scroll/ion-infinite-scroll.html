@@ -1,12 +1,14 @@
 <ion-content>
-<ion-refresher pullMax="400" (ionRefresh)="doRefresh($event)">
-  <ion-refresher-content
-    pullingIcon="ios-arrow-round-down"
-    pullingText="松开刷新"
-    refreshingText=""
-    refreshingSpinner="dots">
-  </ion-refresher-content>
-</ion-refresher>
+  
+  <ion-refresher pullMax="400" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-round-down"
+      pullingText="松开刷新"
+      refreshingText=""
+      refreshingSpinner="dots">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item *ngFor="let i of items">{{i}}</ion-item>
   </ion-list>
@@ -17,4 +19,5 @@
       loadingText="正在加载更多内容...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  </ion-content>
+
+</ion-content>

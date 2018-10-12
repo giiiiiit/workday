@@ -1,0 +1,70 @@
+check-find-search {
+
+   .searchbar-ios {
+     background: none !important;
+     min-height: 0;
+   }
+     .searchbar-ios .searchbar-input {
+       border-radius: 0px !important;
+     }
+
+  .cancle{
+    line-height: 31px;
+    padding: 0 10px 0 20px;
+    color: white;
+  }
+  .gray-bar{
+    width: 100%;
+    height: 0.6rem;
+    background-color: #00000010;
+  }
+   ion-content {
+     background-color: #ffffff !important;
+   }
+   
+   ion-header {
+     background-color: #c7000b;
+     padding: 5px 10px 5px 10px;
+     ion-title{
+      padding-right: 39px;
+     }
+   }
+  //title
+  .title-part {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+    background-color: #c7000b;
+     padding: 10px 10px 5px 10px;
+    img {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .problemContainer{
+    padding:0 1.4rem;
+    .problem{
+      border-bottom: 0.02rem solid #00000056;
+      font-size: 1.5rem;
+      padding: 1.5rem 0;
+      span{
+        width: 1.8rem;
+        height: 1.8rem;
+        border: 1px solid #00000066;
+        border-radius: 50%;
+        float: right;
+      }
+    }
+    .problem-active{
+      color: #FF4D56
+     
+    }
+   .problem-active-span {
+     background-color: #FF4D56;
+   }
+   
+  }
+
+
+}

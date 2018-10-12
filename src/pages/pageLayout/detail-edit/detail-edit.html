@@ -1,0 +1,39 @@
+<!--
+  Generated template for the DetailEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>编辑页</ion-title>
+    <span>提交</span>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content>
+  <div class="edit">
+    <div class="edit-box img-box">
+      <p>上传图片</p>
+      <div class="imgs">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1037269343,4031299720&fm=26&gp=0.jpg" alt="">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1037269343,4031299720&fm=26&gp=0.jpg" alt="">
+        <div><ion-icon ios="ios-add" md="md-add"></ion-icon></div>
+      </div>
+    </div>
+    <div class="edit-box title-box">
+      <p>设置标题</p>
+      <input type="text" placeholder="请输入标题">
+    </div>
+    <div class="edit-box content-box">
+      <p>文章详情</p>
+      <div class="text-box">
+          <textarea placeholder="请输入驳回原因..." style="resize: none;" [(ngModel)]="textareaValue" (ngModelChange)="textareaValueChange($event)" maxlength="5000"></textarea>
+          <span>{{textareaValueLength}}/5000</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

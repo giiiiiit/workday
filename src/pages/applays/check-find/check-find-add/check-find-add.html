@@ -1,0 +1,123 @@
+<ion-header>
+  <div class="title-part"> 
+    <div (click)="back()">
+        <img src="assets/imgs/backArrow@3x.png" alt="" sizes="" srcset="">
+      </div>
+    <ion-title>
+      添加审核发现
+    </ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="gray-bar"></div>
+  <div class="tabContainer">
+    <div class="tab-item"><div class="tab"><span  [ngClass]="{'active-tab': activeTab == '0'}" (click)="switchTab('0')">问题</span></div></div>
+    <div class="tab-item"><div  class="tab"><span  [ngClass]="{'active-tab': activeTab == '1'}" (click)="switchTab('1')">亮点</span></div></div>
+  </div>
+  <div class="gray-bar"></div>
+  <div *ngIf="activeTab == '0'">
+    <div>
+      <div class="part-title">
+        <div class="red-sider"></div>
+        <div class="title">基本信息</div>
+      </div>
+      <div class="basic-detail">
+        <div class="detail-item-1">
+          被审单位
+          <span class="gray-text right-text" (click)="selectDepartment()">{{activeData.departmentName}}
+            <span>></span>
+          </span>
+        </div>
+        <div class="detail-item-1 ">
+          问题性质<span class="gray-text right-text" (click)="selectProblemProperty()">{{activeData.level.key}}
+            <span>></span>
+          </span>
+        </div>
+        <div class="detail-item-1">
+          限改日期<span  class="gray-text right-text"><ion-datetime cancelText="取消" displayFormat="YYYY-MM-DD" [(ngModel)]="activeData.lastTime" doneText="确定"  placeholder="限改日期" min="2018-09-12"></ion-datetime></span>
+          
+
+        </div>
+        <div class="detail-item-1 noborder">
+          问题描述
+        </div>
+        <div class="discribe">
+          <textarea rows="3" cols="20"  [(ngModel)]="activeData.discribe" placeholder="请输入问题描述..." (ngModelChange)="discribeChange($event)"></textarea>
+          <span>{{activeData.discribe.length}}/500</span>
+        </div>
+        <div class="detail-item-1 noborder">
+          附件上传
+          <span class="right-text media-btn">
+            <upload-img-video-file [option]="uploadImgFromCameraOrLib" (afterUpload)="afterUpload($event) "  *ngIf="activeData.imgAppendix.length != 9" ></upload-img-video-file>
+            <img  class="disable-btn" *ngIf="activeData.imgAppendix.length == 9"   src="assets/imgs/sign-save2.png" >
+          </span>
+          <span class="right-text media-btn">
+            <upload-img-video-file [option]="uploadVideo" (afterUpload)="afterUpload($event) "  *ngIf="activeData.videoAppendix.length ==0" ></upload-img-video-file>
+            <img class="disable-btn" src="assets/imgs/video.png" *ngIf="activeData.videoAppendix.length > 0"  > 
+          </span>
+          <div *ngIf="activeData.imgAppendix.length>0" style="height:8rem;margin-bottom:1rem">
+            <div class="imgList" >
+              <div class="img-warpper" *ngFor="let url  of activeData.imgAppendix ; let i=index">
+                <img  src="{{url}}">
+                <img class="delete" src="assets/imgs/delete.png" alt="" (click)="confirmDeleteImg(i)">
+              </div>
+            </div>
+          </div>
+          <div class="video-wrapper"  *ngIf="activeData.videoAppendix.length>0">
+             <videoPlayer-component  [option]="videoOption"></videoPlayer-component>
+             <img class="delete" src="assets/imgs/delete.png" alt="" (click)="confirmDeleteVideo(i)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gray-bar"></div>
+    <div>
+      <div class="part-title">
+        <div class="red-sider"></div>
+        <div class="title">问题归类</div>
+      </div>
+      <div class="basic-detail">
+        <div class="detail-item-1 noborder">
+          审核主题<span class="gray-text right-text">单位名称</span>
+        </div>
+        <div class="detail-item-1 noborder ">
+          审核项<span class="gray-text right-text">一般</span>
+        </div>
+        <div class="detail-item-1 noborder">
+          审核内容<span class="gray-text right-text">2018-09-11</span>
+        </div>
+        <div class="detail-item-1 noborder">
+          评分项
+          <div class="gray-text gray-paragraph right-paragraph">Web前端开发是从网页制作演变而来，其中包括三个要素：HTML、CSS和JavaScript；Web前端用人数量已经远远超过主流编程语言的开发人员的数量。</div>
+        </div>
+      </div>
+    </div>
+    <div class="gray-bar"></div>
+    <div>
+      <div class="part-title">
+        <div class="red-sider"></div>
+        <div class="title">问题列表</div>
+      </div>
+      <div class="question-item">
+        <div class="imgContainer">
+          <img src="assets/imgs/problem.png" alt="">
+        </div>
+        <div class="gray-text">
+          问题内容问题内容问题内容问题内容问题题内容问题容问题
+          问题内容问题内容问题内容问题内容问题题内容问题容问题
+        </div>
+        <div class="name gray-text">
+          <div>姓名名</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar (click)="sure()">
+    <ion-title>保存</ion-title>
+  </ion-toolbar>
+</ion-footer>
